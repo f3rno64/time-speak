@@ -1,0 +1,13 @@
+/.undodir
+/.nyc_output
+/.yalc
+/node_modules
+/coverage
+package-lock.json
+yarn.lock
+yarn-error.log
+yalc.lock
+tags
+
+/dist/test
+/src/test

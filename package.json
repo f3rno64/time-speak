@@ -1,0 +1,41 @@
+{
+  "name": "language-time-parser",
+  "version": "0.0.1",
+  "description": "Library for parsing natural language strings describing times, durations, and intervals",
+  "main": "dist/index.js",
+  "repository": "https://github.com/f3rno64/language-time-parser",
+  "author": "Cris Mihalache <f3rno64@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build-ts": "tsc",
+    "build": "npm run build-ts && npm run lint",
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --quiet --fix",
+    "test": "npm run lint && npm run unit",
+    "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive dist/test/**/*.js",
+    "update-deps": "./node_modules/.bin/updates -u -g -c",
+    "update-version": "./node_modules/.bin/standard-version"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "lodash": "^4.17.21",
+    "signale": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts": "^18.12.1",
+    "@types/chai": "^4.3.4",
+    "@types/lodash": "^4.14.192",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.11",
+    "@types/signale": "^1.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "chai": "^4.3.7",
+    "eslint": "^8.37.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "standard-version": "^9.5.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3",
+    "updates": "^13.4.0"
+  }
+}
