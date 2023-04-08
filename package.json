@@ -1,14 +1,34 @@
 {
-  "name": "language-time-parser",
+  "name": "time-speak",
   "version": "0.0.1",
   "description": "Library for parsing natural language strings describing times, durations, and intervals",
   "main": "dist/index.js",
-  "repository": "https://github.com/f3rno64/language-time-parser",
   "author": "Cris Mihalache <f3rno64@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/f3rno64/time-speak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/f3rno64/time-speak"
+  },
+  "bugs": {
+    "url": "https://github.com/f3rno64/time-speak/issues"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "keywords": [
+    "natural language processing",
+    "duration",
+    "parser",
+    "time",
+    "date",
+    "nlp"
+  ],
   "scripts": {
     "build-ts": "tsc",
     "build": "npm run build-ts && npm run lint",
+    "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f 'dist/**/*.js' > DOCUMENTATION.md",
+    "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --quiet --fix",
     "test": "npm run lint && npm run unit",
     "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive dist/test/**/*.js",
@@ -31,6 +51,7 @@
     "@typescript-eslint/parser": "^5.57.1",
     "chai": "^4.3.7",
     "eslint": "^8.37.0",
+    "jsdoc-to-markdown": "^8.0.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "standard-version": "^9.5.0",

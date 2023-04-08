@@ -11,7 +11,7 @@ export const TIME_UNITS = [
   TimeUnit.Year
 ]
 
-export const TU_DURATIONS: any = {
+export const TIME_UNIT_DURATIONS: any = {
   [TimeUnit.Millisecond]: 1,
   [TimeUnit.Second]: 1000,
   [TimeUnit.Minute]: 60 * 1000,

@@ -1,8 +1,16 @@
 import _last from 'lodash/last'
 
-import { TU_DURATIONS } from '../const'
+import { TIME_UNIT_DURATIONS } from '../const'
 import parseToTimeUnit from './to_time_unit'
 
+/**
+ * Main method for parsing strings into dates, durations, and intervals.
+ *
+ * @TODO: WIP
+ *
+ * @param {string} input - input
+ * @returns {Date} d
+ */
 const parseString = (input: string): Date => {
   const inputChars = input.trim().split('')
   const inputWords = input.split(' ')
@@ -32,7 +40,7 @@ const parseString = (input: string): Date => {
       const { inputDataValue, timeUnit } = res
 
       skipUntilWhitespace = true
-      result += inputDataValue * TU_DURATIONS[timeUnit]
+      result += inputDataValue * TIME_UNIT_DURATIONS[timeUnit]
       reg = ''
     } else if (reg === 'and') {
       reg = ''

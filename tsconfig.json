@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "removeComments": false,
         "module": "commonjs",
         "esModuleInterop": true,
         "ignoreDeprecations": "5.0",
