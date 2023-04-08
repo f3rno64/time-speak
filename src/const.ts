@@ -1,6 +1,10 @@
 import { TimeUnit } from './types'
 
 export const TIME_UNITS = [
+  TimeUnit.Millisecond,
+  TimeUnit.Second,
+  TimeUnit.Minute,
+  TimeUnit.Hour,
   TimeUnit.Day,
   TimeUnit.Week,
   TimeUnit.Month,
@@ -8,6 +12,10 @@ export const TIME_UNITS = [
 ]
 
 export const TU_DURATIONS: any = {
+  [TimeUnit.Millisecond]: 1,
+  [TimeUnit.Second]: 1000,
+  [TimeUnit.Minute]: 60 * 1000,
+  [TimeUnit.Hour]: 60 * 60 * 1000,
   [TimeUnit.Day]: 24 * 60 * 60 * 1000,
   [TimeUnit.Week]: 7 * 24 * 60 * 60 * 1000,
   [TimeUnit.Month]: 30 * 24 * 60 * 60 * 1000,
@@ -15,9 +23,13 @@ export const TU_DURATIONS: any = {
 }
 
 export const REGEX_STRINGS: any = {
+  [TimeUnit.Millisecond]: '(milliseconds?|ms)',
+  [TimeUnit.Second]: '(seconds?|sec|s)',
+  [TimeUnit.Minute]: '(minutes?|min)',
+  [TimeUnit.Hour]: '(hours?|h)',
   [TimeUnit.Day]: '(days?|d)',
   [TimeUnit.Week]: '(weeks?|w|wk)',
-  [TimeUnit.Month]: '(months?|m|mon)',
+  [TimeUnit.Month]: '(months?|mon)',
   [TimeUnit.Year]: '(years?|y|yr)'
 }
 

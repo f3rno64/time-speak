@@ -34,12 +34,9 @@ const parseString = (input: string): Date => {
       skipUntilWhitespace = true
       result += inputDataValue * TU_DURATIONS[timeUnit]
       reg = ''
-    } else {
-      // TODO: Refactor
-      if (reg === 'and') {
-        reg = ''
-        skipUntilWhitespace = true
-      }
+    } else if (reg === 'and') {
+      reg = ''
+      skipUntilWhitespace = true
     }
   }
 
