@@ -1,4 +1,35 @@
-import { TimeUnit } from './types'
+import {
+  RegexStringMap,
+  NumberWord,
+  ValueMap,
+  TimeUnit
+} from './types'
+
+export const NUMBER_WORDS = [
+  NumberWord.One,
+  NumberWord.Two,
+  NumberWord.Three,
+  NumberWord.Four,
+  NumberWord.Five,
+  NumberWord.Six,
+  NumberWord.Seven,
+  NumberWord.Eight,
+  NumberWord.Nine,
+  NumberWord.Ten,
+]
+
+export const NW_VALUES: ValueMap = {
+  [NumberWord.One]: 1,
+  [NumberWord.Two]: 2,
+  [NumberWord.Three]: 3,
+  [NumberWord.Four]: 4,
+  [NumberWord.Five]: 5,
+  [NumberWord.Six]: 6,
+  [NumberWord.Seven]: 7,
+  [NumberWord.Eight]: 8,
+  [NumberWord.Nine]: 9,
+  [NumberWord.Ten]: 10
+}
 
 export const TIME_UNITS = [
   TimeUnit.Millisecond,
@@ -33,12 +64,14 @@ export const REGEX_STRINGS: any = {
   [TimeUnit.Year]: '(years?|y|yr)'
 }
 
-export const TU_REGEX_STRINGS: any = {}
+// eslint-disable-next-line
+// @ts-ignore
+export const TU_REGEX_STRINGS: RegexStringMap = {}
 
 TIME_UNITS.forEach((timeUnit: TimeUnit) => {
   const tuRegexString = REGEX_STRINGS[timeUnit]
 
   TU_REGEX_STRINGS[timeUnit] = (
-    `(in)?(\\s*)?(\\d*)(\\s*)?${tuRegexString}(\\s*)?(ago)?$`
+    `(in)?(\\s*)?(\\w*)?(\\s*)?${tuRegexString}(\\s*)?(ago)?`
   )
 })

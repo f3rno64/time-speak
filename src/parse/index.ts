@@ -1,6 +1,8 @@
 import _last from 'lodash/last'
+import _isFinite from 'lodash/isFinite'
+import _includes from 'lodash/includes'
 
-import { TIME_UNIT_DURATIONS } from '../const'
+import { NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS } from '../const'
 import parseToTimeUnit from './to_time_unit'
 
 /**
@@ -12,14 +14,14 @@ import parseToTimeUnit from './to_time_unit'
  * @returns {Date} d
  */
 const parseString = (input: string): Date => {
-  const inputChars = input.trim().split('')
-  const inputWords = input.split(' ')
+  const inputChars = input.trim().toLowerCase().split('')
+  const inputWords = input.trim().toLowerCase().split(' ')
   const direction = _last(inputWords) === 'ago'
     ? -1
     : 1
 
   let reg = ''
-  let result = 0
+  let result = null
   let skipUntilWhitespace = false
 
   for (let i = 0; i < inputChars.length; i += 1) {
@@ -34,18 +36,37 @@ const parseString = (input: string): Date => {
 
     reg += c
 
+    console.log(reg)
+
     const res = parseToTimeUnit(reg)
 
-    if (typeof res !== 'undefined') {
+    if (res !== null) {
       const { inputDataValue, timeUnit } = res
 
-      skipUntilWhitespace = true
-      result += inputDataValue * TIME_UNIT_DURATIONS[timeUnit]
+      if (result === null) {
+        result = 0
+      }
+
+      // eslint-disable-next-line
+      // @ts-ignore
+      const resultValue = _includes(NUMBER_WORDS, inputDataValue)
+        ? NW_VALUES[inputDataValue]
+        : _isFinite(+inputDataValue)
+          ? +inputDataValue
+          : 0
+
+      result += resultValue * TIME_UNIT_DURATIONS[timeUnit]
+      console.log({ resultValue, inputDataValue, result, timeUnit })
       reg = ''
+      skipUntilWhitespace = true
     } else if (reg === 'and') {
       reg = ''
       skipUntilWhitespace = true
     }
+  }
+
+  if (result === null) {
+    throw new Error(`Failed to parse input string: ${input}`)
   }
 
   return new Date(Date.now() + (result * direction))
