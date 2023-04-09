@@ -2,7 +2,7 @@
 
 import { expect } from 'chai'
 import parseString from '../'
-import { TU_DURATIONS } from '../const'
+import { TIME_UNIT_DURATIONS } from '../const'
 
 const TEST_DATA = [
   ['1 day', 24 * 60 * 60 * 1000],
@@ -40,7 +40,9 @@ const NUMBER_WORDS = [
 NUMBER_WORDS.forEach((numberWord: string, i: number) => {
   TIME_UNITS.forEach((timeUnit: string) => {
     TEST_DATA.push([
-      `${numberWord} ${timeUnit}${i > 0 ? 's' : ''} ago`, -1 * (i + 1) * TU_DURATIONS[timeUnit]
+      // eslint-disable-next-line
+      // @ts-ignore
+      `${numberWord} ${timeUnit}${i > 0 ? 's' : ''} ago`, -1 * (i + 1) * TIME_UNIT_DURATIONS[timeUnit]
     ])
   })
 })
@@ -51,7 +53,7 @@ describe('parseString', () => {
       const [str, v] = data
       const res = parseString(str as string)
 
-      expect(+res).to.equal(v)
+      expect(res).to.equal(v)
     })
   })
 })

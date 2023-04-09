@@ -18,6 +18,7 @@ const parseToTimeUnit = (input: string): ParsedTimeUnitData | null => {
   return {
     inputDataUnit,
     inputDataValue,
+    // TODO: Refactor to matched regex ID
     timeUnit: timeUnit as TimeUnit,
     inputDataAgo: !!inputDataAgo,
     inputDataIn: !!inputDataIn

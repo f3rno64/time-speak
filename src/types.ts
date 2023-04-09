@@ -26,6 +26,7 @@ export enum NumberWord {
 }
 
 export type ValueMap = Record<string, number>
+export type DurationValueMap = Record<TimeUnit, number>
 export type RegexStringMap = Record<TimeUnit, string>
 
 export interface ParsedTimeUnitData {

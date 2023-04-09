@@ -13,7 +13,7 @@ import parseToTimeUnit from './to_time_unit'
  * @param {string} input - input
  * @returns {Date} d
  */
-const parseString = (input: string): Date => {
+const parseString = (input: string): number => {
   const inputChars = input.trim().toLowerCase().split('')
   const inputWords = input.trim().toLowerCase().split(' ')
   const direction = _last(inputWords) === 'ago'
@@ -22,30 +22,27 @@ const parseString = (input: string): Date => {
 
   let reg = ''
   let result = null
-  let skipUntilWhitespace = false
 
   for (let i = 0; i < inputChars.length; i += 1) {
     const c = inputChars[i]
 
     if (c === ' ') {
-      skipUntilWhitespace = false
       continue
-    } else if (skipUntilWhitespace) {
-      continue
+    }
+
+    // i.e. 'and' followed by '3'
+    if (_isFinite(+c) && !_isFinite(+reg)) {
+      reg = ''
     }
 
     reg += c
 
-    console.log(reg)
-
     const res = parseToTimeUnit(reg)
 
-    if (res !== null) {
-      const { inputDataValue, timeUnit } = res
+    console.log(JSON.stringify({ reg, res }, null, 2))
 
-      if (result === null) {
-        result = 0
-      }
+    if (res !== null) {
+      const { timeUnit, inputDataValue } = res
 
       // eslint-disable-next-line
       // @ts-ignore
@@ -55,13 +52,12 @@ const parseString = (input: string): Date => {
           ? +inputDataValue
           : 0
 
+      // eslint-disable-next-line
+      // @ts-ignore
       result += resultValue * TIME_UNIT_DURATIONS[timeUnit]
-      console.log({ resultValue, inputDataValue, result, timeUnit })
       reg = ''
-      skipUntilWhitespace = true
     } else if (reg === 'and') {
       reg = ''
-      skipUntilWhitespace = true
     }
   }
 
@@ -69,7 +65,7 @@ const parseString = (input: string): Date => {
     throw new Error(`Failed to parse input string: ${input}`)
   }
 
-  return new Date(Date.now() + (result * direction))
+  return (result ?? 0) * direction
 }
 
 export default parseString
