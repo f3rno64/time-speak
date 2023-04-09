@@ -16,12 +16,13 @@ import parseToTimeUnit from './to_time_unit'
 const parseString = (input: string): number => {
   const inputChars = input.trim().toLowerCase().split('')
   const inputWords = input.trim().toLowerCase().split(' ')
-  const direction = _last(inputWords) === 'ago'
+  const direction = _includes(inputWords, 'ago')
     ? -1
     : 1
 
   let reg = ''
-  let result = null
+  let result = 0
+  let lastValue = null
 
   for (let i = 0; i < inputChars.length; i += 1) {
     const c = inputChars[i]
@@ -37,24 +38,30 @@ const parseString = (input: string): number => {
 
     reg += c
 
+    if (_includes(NUMBER_WORDS, reg)) {
+      lastValue = NW_VALUES[reg]
+      reg = ''
+      continue
+    }
+
     const res = parseToTimeUnit(reg)
 
     console.log(JSON.stringify({ reg, res }, null, 2))
 
     if (res !== null) {
       const { timeUnit, inputDataValue } = res
-
       // eslint-disable-next-line
       // @ts-ignore
       const resultValue = _includes(NUMBER_WORDS, inputDataValue)
         ? NW_VALUES[inputDataValue]
         : _isFinite(+inputDataValue)
           ? +inputDataValue
-          : 0
+          : lastValue
 
       // eslint-disable-next-line
       // @ts-ignore
       result += resultValue * TIME_UNIT_DURATIONS[timeUnit]
+      lastValue = null
       reg = ''
     } else if (reg === 'and') {
       reg = ''
@@ -65,7 +72,7 @@ const parseString = (input: string): number => {
     throw new Error(`Failed to parse input string: ${input}`)
   }
 
-  return (result ?? 0) * direction
+  return result * direction
 }
 
 export default parseString

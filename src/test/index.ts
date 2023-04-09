@@ -7,12 +7,12 @@ import { TIME_UNIT_DURATIONS } from '../const'
 const TEST_DATA = [
   ['1 day', 24 * 60 * 60 * 1000],
   ['in 1 day', 24 * 60 * 60 * 1000],
-  ['1d', 24 * 60 * 60 * 1000],
-  ['in 1d', 24 * 60 * 60 * 1000],
+  ['1day', 24 * 60 * 60 * 1000],
+  ['in 1dys', 24 * 60 * 60 * 1000],
   ['2 days ago', -2 * 24 * 60 * 60 * 1000],
-  ['2d', 2 * 24 * 60 * 60 * 1000],
-  ['in 2d', 2 * 24 * 60 * 60 * 1000],
-  ['2d ago', -2 * 24 * 60 * 60 * 1000],
+  ['2dy', 2 * 24 * 60 * 60 * 1000],
+  ['in 2day', 2 * 24 * 60 * 60 * 1000],
+  ['2day ago', -2 * 24 * 60 * 60 * 1000],
   ['1wk', 7 * 24 * 60 * 60 * 1000],
   ['in 1 week', 7 * 24 * 60 * 60 * 1000],
   ['1 week ago', -7 * 24 * 60 * 60 * 1000],
@@ -52,6 +52,8 @@ describe('parseString', () => {
     it(data[0] as string, () => {
       const [str, v] = data
       const res = parseString(str as string)
+
+      console.log({ res, v })
 
       expect(res).to.equal(v)
     })

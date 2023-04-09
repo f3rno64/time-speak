@@ -12,7 +12,7 @@ const parseToTimeUnit = (input: string): ParsedTimeUnitData | null => {
 
   const [timeUnit, inputData] = result
   const [,
-    inputDataIn,, inputDataValue,, inputDataUnit,, inputDataAgo
+    inputDataIn,, inputDataValue,,, inputDataUnit,, inputDataAgo
   ] = inputData
 
   return {
