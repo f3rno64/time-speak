@@ -10,7 +10,7 @@ import parseToTimeUnit from './to_time_unit'
  * @TODO: WIP
  *
  * @param {string} input - input
- * @returns {Date} d
+ * @returns {number} mts
  */
 const parseString = (input: string): number => {
   const inputChars = input.trim().toLowerCase().split('')

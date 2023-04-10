@@ -77,7 +77,7 @@ utility methods to convert to other units (hours, minutes, etc).</p>
 ## Functions
 
 <dl>
-<dt><a href="#parseString">parseString(input)</a> ⇒ <code>Date</code></dt>
+<dt><a href="#parseString">parseString(input)</a> ⇒ <code>number</code></dt>
 <dd><p>Main method for parsing strings into dates, durations, and intervals.</p>
 </dd>
 </dl>
@@ -234,11 +234,11 @@ Units of time
 **Kind**: global variable  
 <a name="parseString"></a>
 
-## parseString(input) ⇒ <code>Date</code>
+## parseString(input) ⇒ <code>number</code>
 Main method for parsing strings into dates, durations, and intervals.
 
 **Kind**: global function  
-**Returns**: <code>Date</code> - d  
+**Returns**: <code>number</code> - mts  
 **Todo:**: WIP  
 
 | Param | Type | Description |
