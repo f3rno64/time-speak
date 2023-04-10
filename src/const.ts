@@ -1,4 +1,36 @@
-import { TimeUnit } from './types'
+import {
+  DurationValueMap,
+  RegexStringMap,
+  NumberWord,
+  ValueMap,
+  TimeUnit
+} from './types'
+
+export const NUMBER_WORDS = [
+  NumberWord.One,
+  NumberWord.Two,
+  NumberWord.Three,
+  NumberWord.Four,
+  NumberWord.Five,
+  NumberWord.Six,
+  NumberWord.Seven,
+  NumberWord.Eight,
+  NumberWord.Nine,
+  NumberWord.Ten,
+]
+
+export const NW_VALUES: ValueMap = {
+  [NumberWord.One]: 1,
+  [NumberWord.Two]: 2,
+  [NumberWord.Three]: 3,
+  [NumberWord.Four]: 4,
+  [NumberWord.Five]: 5,
+  [NumberWord.Six]: 6,
+  [NumberWord.Seven]: 7,
+  [NumberWord.Eight]: 8,
+  [NumberWord.Nine]: 9,
+  [NumberWord.Ten]: 10
+}
 
 export const TIME_UNITS = [
   TimeUnit.Millisecond,
@@ -11,7 +43,7 @@ export const TIME_UNITS = [
   TimeUnit.Year
 ]
 
-export const TIME_UNIT_DURATIONS: any = {
+export const TIME_UNIT_DURATIONS: DurationValueMap = {
   [TimeUnit.Millisecond]: 1,
   [TimeUnit.Second]: 1000,
   [TimeUnit.Minute]: 60 * 1000,
@@ -22,23 +54,25 @@ export const TIME_UNIT_DURATIONS: any = {
   [TimeUnit.Year]: 365 * 24 * 60 * 60 * 1000
 }
 
-export const REGEX_STRINGS: any = {
-  [TimeUnit.Millisecond]: '(milliseconds?|ms)',
-  [TimeUnit.Second]: '(seconds?|sec|s)',
-  [TimeUnit.Minute]: '(minutes?|min)',
-  [TimeUnit.Hour]: '(hours?|h)',
-  [TimeUnit.Day]: '(days?|d)',
-  [TimeUnit.Week]: '(weeks?|w|wk)',
-  [TimeUnit.Month]: '(months?|mon)',
-  [TimeUnit.Year]: '(years?|y|yr)'
+export const REGEX_STRINGS: RegexStringMap = {
+  [TimeUnit.Millisecond]: '(milliseconds?)',
+  [TimeUnit.Second]: '(seconds?)',
+  [TimeUnit.Minute]: '(minutes?)',
+  [TimeUnit.Hour]: '(hours?)',
+  [TimeUnit.Day]: '(days?)',
+  [TimeUnit.Week]: '(weeks?)',
+  [TimeUnit.Month]: '(months?)',
+  [TimeUnit.Year]: '(years?)'
 }
 
-export const TU_REGEX_STRINGS: any = {}
+// eslint-disable-next-line
+// @ts-ignore
+export const TU_REGEX_STRINGS: RegexStringMap = {}
 
 TIME_UNITS.forEach((timeUnit: TimeUnit) => {
   const tuRegexString = REGEX_STRINGS[timeUnit]
 
   TU_REGEX_STRINGS[timeUnit] = (
-    `(in)?(\\s*)?(\\d*)(\\s*)?${tuRegexString}(\\s*)?(ago)?$`
+    `(in)?(\\s*)?(\\w*)?(\\s*)?${tuRegexString}(\\s*)?(ago)?`
   )
 })

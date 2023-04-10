@@ -1,6 +1,7 @@
-import _last from 'lodash/last'
+import _isFinite from 'lodash/isFinite'
+import _includes from 'lodash/includes'
 
-import { TIME_UNIT_DURATIONS } from '../const'
+import { NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS } from '../const'
 import parseToTimeUnit from './to_time_unit'
 
 /**
@@ -11,44 +12,69 @@ import parseToTimeUnit from './to_time_unit'
  * @param {string} input - input
  * @returns {Date} d
  */
-const parseString = (input: string): Date => {
-  const inputChars = input.trim().split('')
-  const inputWords = input.split(' ')
-  const direction = _last(inputWords) === 'ago'
+const parseString = (input: string): number => {
+  const inputChars = input.trim().toLowerCase().split('')
+  const inputWords = input.trim().toLowerCase().split(' ')
+  const direction = _includes(inputWords, 'ago')
     ? -1
     : 1
 
   let reg = ''
   let result = 0
-  let skipUntilWhitespace = false
+  let lastValue = null
 
   for (let i = 0; i < inputChars.length; i += 1) {
     const c = inputChars[i]
 
     if (c === ' ') {
-      skipUntilWhitespace = false
       continue
-    } else if (skipUntilWhitespace) {
-      continue
+    }
+
+    // i.e. 'and' followed by '3'
+    if (_isFinite(+c) && !_isFinite(+reg)) {
+      reg = ''
     }
 
     reg += c
 
+    if (_includes(NUMBER_WORDS, reg)) {
+      lastValue = NW_VALUES[reg]
+      reg = ''
+      continue
+    }
+
     const res = parseToTimeUnit(reg)
 
-    if (typeof res !== 'undefined') {
-      const { inputDataValue, timeUnit } = res
+    if (res !== null) {
+      const { timeUnit, inputDataValue } = res
 
-      skipUntilWhitespace = true
-      result += inputDataValue * TIME_UNIT_DURATIONS[timeUnit]
+      // eslint-disable-next-line
+      // @ts-ignore
+      const resultValue = _includes(NUMBER_WORDS, inputDataValue)
+        ? NW_VALUES[inputDataValue]
+        : _isFinite(+inputDataValue)
+          ? +inputDataValue
+          : lastValue
+
+      if (!_isFinite(resultValue)) {
+        continue
+      }
+
+      // eslint-disable-next-line
+      // @ts-ignore
+      result += resultValue * TIME_UNIT_DURATIONS[timeUnit]
+      lastValue = null
       reg = ''
     } else if (reg === 'and') {
       reg = ''
-      skipUntilWhitespace = true
     }
   }
 
-  return new Date(Date.now() + (result * direction))
+  if (result === null) {
+    throw new Error(`Failed to parse input string: ${input}`)
+  }
+
+  return result * direction
 }
 
 export default parseString

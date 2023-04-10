@@ -1,13 +1,13 @@
 import { TU_REGEX_STRINGS, TIME_UNITS } from '../const'
-import { TimeUnit } from '../types'
+import { ParsedTimeUnitData, TimeUnit } from '../types'
 
-const parseToTimeUnit = (input: string): any => {
+const parseToTimeUnit = (input: string): ParsedTimeUnitData | null => {
   const result = TIME_UNITS.map((timeUnit: TimeUnit) => (
     [timeUnit, new RegExp(TU_REGEX_STRINGS[timeUnit], 'g').exec(input)]
   )).find(([, r]) => r !== null)
 
   if (typeof result === 'undefined') {
-    return result
+    return null
   }
 
   const [timeUnit, inputData] = result
@@ -16,11 +16,12 @@ const parseToTimeUnit = (input: string): any => {
   ] = inputData
 
   return {
-    timeUnit,
-    inputDataIn,
-    inputDataValue,
     inputDataUnit,
-    inputDataAgo
+    inputDataValue,
+    // TODO: Refactor to matched regex ID
+    timeUnit: timeUnit as TimeUnit,
+    inputDataAgo: !!inputDataAgo,
+    inputDataIn: !!inputDataIn
   }
 }
 
