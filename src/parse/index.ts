@@ -10,13 +10,14 @@ import { NumberWord } from '../types'
  *   - 'in 1 week and 3 days'
  *   - '1 year and 7 months ago'
  *
- * @param {string} input - input
+ * @param {string} rawInput
  * @returns {number} mts
  * @throws ParseError if parsing fails for any reason
  */
-const parseString = (input: string): number => {
-  const inputChars = input.trim().toLowerCase().split('')
-  const inputWords = input.trim().toLowerCase().split(' ')
+const parseString = (rawInput: string): number => {
+  const input = rawInput.trim().toLowerCase()
+  const inputChars = input.split('')
+  const inputWords = input.split(' ')
   const direction = inputWords.includes('ago')
     ? -1
     : 1
