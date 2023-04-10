@@ -1,21 +1,49 @@
 # time-speak - A natural language parser for dates, times, durations, intervals
 
 A library for parsing human-readable date, time, duration, and interval
-strings. All attempts are made to parse **any** input, no matter how malformed.
-Includes classes to represent durations and intervals. Lightweight, comparable
-to other libraries such as `moment.js`.
+strings. Includes classes to represent durations and intervals. Lightweight.
 
-## More docs TODO
+Example input strings:
 
-### [Release History](#release_history)
+* "2 hours"
+* "1 day ago"
+* "in 1 month and 2 weeks"
+* "every monday at 5pm"
+* "every other friday at 8pm"
+
+## Installation and Usage
+
+DOCS TODO
+
+![npm badge](https://nodei.co/npm/time-speak.png?downloads=true&downloadRank=true&stars=true)
+
+```bash
+yarn add time-speak
+```
+
+```js
+const timeSpeak = require('time-speak')
+const mts = timeSpeak('2 hours and 30 minutes')
+```
+
+### [Developing](#developing)
+
+```bash
+yarn gen-readme // update README.md
+yarn docs // update DOCUMENTATION.md
+yarn test // lint & mocha
+yarn update-deps // bump all deps
+```
+
+### Release History
 
 See *[CHANGELOG.md](CHANGELOG.md)* for more information.
 
-### [License](#license)
+### License
 
 Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more information.
 
-### [Contributing](#contributing)
+### Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -25,7 +53,7 @@ Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more inf
 
 ---
 
-## [API Reference](#api_reference)
+## API Reference
 
 > The standalone JSDoc reference can be found in [DOCUMENTATION.md](DOCUMENTATION.md)
 
