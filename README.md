@@ -1,7 +1,8 @@
 # time-speak - A natural language parser for dates, times, durations, intervals
 
 A library for parsing human-readable date, time, duration, and interval
-strings. Includes classes to represent durations and intervals. Lightweight.
+strings. Includes classes to represent durations and intervals. Lightweight, no
+dependencies.
 
 Example input strings:
 
@@ -78,7 +79,37 @@ utility methods to convert to other units (hours, minutes, etc).</p>
 
 <dl>
 <dt><a href="#parseString">parseString(input)</a> ⇒ <code>number</code></dt>
-<dd><p>Main method for parsing strings into dates, durations, and intervals.</p>
+<dd><p>Parse a string to an mts value. Does not take whitespace into consideration.
+Examples of valid inputs:</p>
+<ul>
+<li>&#39;2 days ago&#39;</li>
+<li>&#39;in 1 week and 3 days&#39;</li>
+<li>&#39;1 year and 7 months ago&#39;</li>
+</ul>
+</dd>
+<dt><a href="#mtsDay">mtsDay()</a></dt>
+<dd><p>Get days as an mts value</p>
+</dd>
+<dt><a href="#mtsHour">mtsHour()</a></dt>
+<dd><p>Get hours as an mts value</p>
+</dd>
+<dt><a href="#mtsMillisecond">mtsMillisecond()</a></dt>
+<dd><p>Get milliseconds as an mts value</p>
+</dd>
+<dt><a href="#mtsMinute">mtsMinute()</a></dt>
+<dd><p>Get minutes as an mts value</p>
+</dd>
+<dt><a href="#mtsMonth">mtsMonth()</a></dt>
+<dd><p>Get months as an mts value</p>
+</dd>
+<dt><a href="#mtsSecond">mtsSecond()</a></dt>
+<dd><p>Get seconds as an mts value</p>
+</dd>
+<dt><a href="#mtsWeek">mtsWeek()</a></dt>
+<dd><p>Get weeks as an mts value</p>
+</dd>
+<dt><a href="#mtsYear">mtsYear()</a></dt>
+<dd><p>Get years as an mts value</p>
 </dd>
 </dl>
 
@@ -235,16 +266,71 @@ Units of time
 <a name="parseString"></a>
 
 ## parseString(input) ⇒ <code>number</code>
-Main method for parsing strings into dates, durations, and intervals.
+Parse a string to an mts value. Does not take whitespace into consideration.
+Examples of valid inputs:
+  - '2 days ago'
+  - 'in 1 week and 3 days'
+  - '1 year and 7 months ago'
 
 **Kind**: global function  
 **Returns**: <code>number</code> - mts  
-**Todo:**: WIP  
+**Throws**:
+
+- ParseError if parsing fails for any reason
+
 
 | Param | Type | Description |
 | --- | --- | --- |
 | input | <code>string</code> | input |
 
+<a name="mtsDay"></a>
+
+## mtsDay()
+Get days as an mts value
+
+**Kind**: global function  
+<a name="mtsHour"></a>
+
+## mtsHour()
+Get hours as an mts value
+
+**Kind**: global function  
+<a name="mtsMillisecond"></a>
+
+## mtsMillisecond()
+Get milliseconds as an mts value
+
+**Kind**: global function  
+<a name="mtsMinute"></a>
+
+## mtsMinute()
+Get minutes as an mts value
+
+**Kind**: global function  
+<a name="mtsMonth"></a>
+
+## mtsMonth()
+Get months as an mts value
+
+**Kind**: global function  
+<a name="mtsSecond"></a>
+
+## mtsSecond()
+Get seconds as an mts value
+
+**Kind**: global function  
+<a name="mtsWeek"></a>
+
+## mtsWeek()
+Get weeks as an mts value
+
+**Kind**: global function  
+<a name="mtsYear"></a>
+
+## mtsYear()
+Get years as an mts value
+
+**Kind**: global function  
 
 
 <!-- Markdown link & img dfn's -->
