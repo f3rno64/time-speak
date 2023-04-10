@@ -1,9 +1,7 @@
-import _isFinite from 'lodash/isFinite'
-import _includes from 'lodash/includes'
-
 import { NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS } from '../const'
 import parseToTimeUnit from './to_time_unit'
 import { ParseError } from '../errors'
+import { NumberWord } from '../types'
 
 /**
  * Parse a string to an mts value. Does not take whitespace into consideration.
@@ -19,7 +17,7 @@ import { ParseError } from '../errors'
 const parseString = (input: string): number => {
   const inputChars = input.trim().toLowerCase().split('')
   const inputWords = input.trim().toLowerCase().split(' ')
-  const direction = _includes(inputWords, 'ago')
+  const direction = inputWords.includes('ago')
     ? -1
     : 1
 
@@ -35,13 +33,13 @@ const parseString = (input: string): number => {
     }
 
     // i.e. 'and' followed by '3'
-    if (_isFinite(+c) && !_isFinite(+reg)) {
+    if (Number.isFinite(+c) && !Number.isFinite(+reg)) {
       reg = ''
     }
 
     reg += c
 
-    if (_includes(NUMBER_WORDS, reg)) {
+    if (NUMBER_WORDS.includes(reg as NumberWord)) {
       lastValue = NW_VALUES[reg]
       reg = ''
       continue
@@ -54,13 +52,13 @@ const parseString = (input: string): number => {
 
       // eslint-disable-next-line
       // @ts-ignore
-      const resultValue = _includes(NUMBER_WORDS, inputDataValue)
+      const resultValue = NUMBER_WORDS.includes(inputDataValue)
         ? NW_VALUES[inputDataValue]
-        : _isFinite(+inputDataValue)
+        : Number.isFinite(+inputDataValue)
           ? +inputDataValue
           : lastValue
 
-      if (!_isFinite(resultValue)) {
+      if (!Number.isFinite(resultValue)) {
         continue
       }
 

@@ -1,5 +1,3 @@
-import _reverse from 'lodash/reverse'
-
 import { TIME_UNITS, TIME_UNIT_DURATIONS } from './const'
 import { TimeUnit, DurationToUnitsOptions, DurationInUnits } from './types'
 
@@ -146,7 +144,9 @@ class Duration {
     let remainingValue = this.value
     let output = ''
 
-    _reverse([...TIME_UNITS]).forEach((tu) => {
+    const tus = [...TIME_UNITS].reverse()
+
+    tus.forEach((tu: TimeUnit) => {
       const v = units[tu]
 
       if (v === 0) {

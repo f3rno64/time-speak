@@ -25,15 +25,7 @@ const TEST_DATA = [
   ['1 year', mtsYear()],
   ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
   ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
-  ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)],
-  /*
-  ['in 1dy', mtsDay()],
-  ['in 1wk', mtsWeek()],
-  ['in 1mo', mtsMonth()],
-  ['in 1min', mtsMinute()],
-  ['in 1ms', mtsMillisecond()],
-  ['in 1yr', mtsYear()]
-  */
+  ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)]
 ]
 
 const TIME_UNITS = [

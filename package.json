@@ -35,11 +35,6 @@
     "update-deps": "./node_modules/.bin/updates -u -g -c",
     "update-version": "./node_modules/.bin/standard-version"
   },
-  "dependencies": {
-    "colors": "^1.4.0",
-    "lodash": "^4.17.21",
-    "signale": "^1.4.0"
-  },
   "devDependencies": {
     "@tsconfig/node-lts": "^18.12.1",
     "@types/chai": "^4.3.4",
