@@ -8,8 +8,8 @@ Example input strings:
 * "2 hours"
 * "1 day ago"
 * "in 1 month and 2 weeks"
-* "every monday at 5pm"
-* "every other friday at 8pm"
+* wip: "every monday at 5pm"
+* wip: "every other friday at 8pm"
 
 ## Installation and Usage
 
@@ -22,8 +22,8 @@ yarn add time-speak
 ```
 
 ```js
-const timeSpeak = require('time-speak')
-const mts = timeSpeak('2 hours and 30 minutes')
+const { parse } = require('time-speak')
+const mts = parse('2 hours and 30 minutes')
 ```
 
 ### [Developing](#developing)
