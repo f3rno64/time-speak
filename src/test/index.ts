@@ -1,29 +1,39 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai'
-import _last from 'lodash/last'
 
 import parseString from '../'
 import { TIME_UNIT_DURATIONS } from '../const'
+import {
+  mtsMillisecond, mtsMinute, mtsDay, mtsWeek, mtsMonth, mtsYear
+} from '../util/mts'
 
 const TEST_DATA = [
-  ['1 day', 24 * 60 * 60 * 1000],
-  ['in 1 day', 24 * 60 * 60 * 1000],
-  ['2 days ago', -2 * 24 * 60 * 60 * 1000],
-  ['in 2 days', 2 * 24 * 60 * 60 * 1000],
-  ['2 day ago', -2 * 24 * 60 * 60 * 1000],
-  ['1 week', 7 * 24 * 60 * 60 * 1000],
-  ['in 1 week', 7 * 24 * 60 * 60 * 1000],
-  ['1 week ago', -7 * 24 * 60 * 60 * 1000],
-  ['2 months ago', -2 * 30 * 24 * 60 * 60 * 1000],
-  ['in 2 months', 2 * 30 * 24 * 60 * 60 * 1000],
-  ['1 month ago', -30 * 24 * 60 * 60 * 1000],
-  ['1 year ago', -365 * 24 * 60 * 60 * 1000],
-  ['in 1 year', 365 * 24 * 60 * 60 * 1000],
-  ['1 year', 365 * 24 * 60 * 60 * 1000],
-  ['in 1 week and 3 days', (7 * 24 * 60 * 60 * 1000) + (3 * 24 * 60 * 60 * 1000)],
-  ['3 weeks and 5 days', (3 * 7 * 24 * 60 * 60 * 1000) + (5 * 24 * 60 * 60 * 1000)],
-  ['3 weeks and 5 days ago', (-3 * 7 * 24 * 60 * 60 * 1000) + (-5 * 24 * 60 * 60 * 1000)],
+  ['1 day', mtsDay()],
+  ['in 1 day', mtsDay()],
+  ['2 days ago', mtsDay(-2)],
+  ['in 2 days', mtsDay(2)],
+  ['2 day ago', mtsDay(-2)],
+  ['1 week', mtsWeek()],
+  ['in 1 week', mtsWeek()],
+  ['1 week ago', mtsWeek(-1)],
+  ['2 months ago', mtsMonth(-2)],
+  ['in 2 months', mtsMonth(2)],
+  ['1 month ago', mtsMonth(-1)],
+  ['1 year ago', mtsYear(-1)],
+  ['in 1 year', mtsYear()],
+  ['1 year', mtsYear()],
+  ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
+  ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
+  ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)],
+  /*
+  ['in 1dy', mtsDay()],
+  ['in 1wk', mtsWeek()],
+  ['in 1mo', mtsMonth()],
+  ['in 1min', mtsMinute()],
+  ['in 1ms', mtsMillisecond()],
+  ['in 1yr', mtsYear()]
+  */
 ]
 
 const TIME_UNITS = [
