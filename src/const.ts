@@ -55,14 +55,14 @@ export const TIME_UNIT_DURATIONS: DurationValueMap = {
 }
 
 export const REGEX_STRINGS: RegexStringMap = {
-  [TimeUnit.Millisecond]: '(^|\\d)(milliseconds?|mss?)',
-  [TimeUnit.Second]: '(^|\\d)(seconds?|secs?)',
-  [TimeUnit.Minute]: '(^|\\d)(minutes?|mins?)',
-  [TimeUnit.Hour]: '(^|\\d)(hours?|hrs?)',
-  [TimeUnit.Day]: '(^|\\d)(days?|dys?)',
-  [TimeUnit.Week]: '(^|\\d)(weeks?|wks?)',
-  [TimeUnit.Month]: '(^|\\d)(months?|mons?)',
-  [TimeUnit.Year]: '(^|\\d)(years?|yrs?)'
+  [TimeUnit.Millisecond]: '(milliseconds?)',
+  [TimeUnit.Second]: '(seconds?)',
+  [TimeUnit.Minute]: '(minutes?)',
+  [TimeUnit.Hour]: '(hours?)',
+  [TimeUnit.Day]: '(days?)',
+  [TimeUnit.Week]: '(weeks?)',
+  [TimeUnit.Month]: '(months?)',
+  [TimeUnit.Year]: '(years?)'
 }
 
 // eslint-disable-next-line

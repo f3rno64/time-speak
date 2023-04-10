@@ -1,4 +1,3 @@
-import _last from 'lodash/last'
 import _isFinite from 'lodash/isFinite'
 import _includes from 'lodash/includes'
 
@@ -46,10 +45,9 @@ const parseString = (input: string): number => {
 
     const res = parseToTimeUnit(reg)
 
-    console.log(JSON.stringify({ reg, res }, null, 2))
-
     if (res !== null) {
       const { timeUnit, inputDataValue } = res
+
       // eslint-disable-next-line
       // @ts-ignore
       const resultValue = _includes(NUMBER_WORDS, inputDataValue)
@@ -57,6 +55,10 @@ const parseString = (input: string): number => {
         : _isFinite(+inputDataValue)
           ? +inputDataValue
           : lastValue
+
+      if (!_isFinite(resultValue)) {
+        continue
+      }
 
       // eslint-disable-next-line
       // @ts-ignore
