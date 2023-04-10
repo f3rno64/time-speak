@@ -1,0 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.0.2 (2023-04-10)
+
+
+### Features
+
+* add duration class ([bd397cf](https://github.com/f3rno64/time-speak/commit/bd397cf30f8986fd1583df55fff888a26850c535))
+* initial commit ([ba5533c](https://github.com/f3rno64/time-speak/commit/ba5533cc5b0f04849e6ac1ac8c0c8324d7ee7ae4))
+* update README ([7bd4bf1](https://github.com/f3rno64/time-speak/commit/7bd4bf161731950e4868e1474404dd58292d6624))
+* WIP number word ("one") support ([920c7df](https://github.com/f3rno64/time-speak/commit/920c7dfee61359e340c8c6edb1b9574638f2d411))
+* WIP reset me ([51a621a](https://github.com/f3rno64/time-speak/commit/51a621a38a10a2d71e950703a50c4ae65ffa6f70))
+
+
+### Bug Fixes
+
+* remaining issues, add ms, s, min, hr ([a740c21](https://github.com/f3rno64/time-speak/commit/a740c2112a35b9af2206537ad94e6dbd7e0eb27b))
