@@ -1,6 +1,6 @@
 {
   "name": "time-speak",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library for parsing natural language strings describing times, durations, and intervals",
   "main": "dist/index.js",
   "author": "Cris Mihalache <f3rno64@gmail.com>",

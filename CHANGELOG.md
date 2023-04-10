@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/f3rno64/time-speak/compare/v0.0.3...v0.0.4) (2023-04-10)
+
+
+### Bug Fixes
+
+* readme example ([89b5c9a](https://github.com/f3rno64/time-speak/commit/89b5c9a2ab59340294cd08c8542bdcfb90a02b9a))
+* return type in docs on parseString ([0aecefb](https://github.com/f3rno64/time-speak/commit/0aecefbf0e28a0a0807f3ac27bba1393bf25fbfa))
+
 ### [0.0.3](https://github.com/f3rno64/time-speak/compare/v0.0.2...v0.0.3) (2023-04-10)
 
 
