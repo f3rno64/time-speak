@@ -78,7 +78,7 @@ utility methods to convert to other units (hours, minutes, etc).</p>
 ## Functions
 
 <dl>
-<dt><a href="#parseString">parseString(input)</a> ⇒ <code>number</code></dt>
+<dt><a href="#parseString">parseString(rawInput)</a> ⇒ <code>number</code></dt>
 <dd><p>Parse a string to an mts value. Does not take whitespace into consideration.
 Examples of valid inputs:</p>
 <ul>
@@ -265,7 +265,7 @@ Units of time
 **Kind**: global variable  
 <a name="parseString"></a>
 
-## parseString(input) ⇒ <code>number</code>
+## parseString(rawInput) ⇒ <code>number</code>
 Parse a string to an mts value. Does not take whitespace into consideration.
 Examples of valid inputs:
   - '2 days ago'
@@ -279,9 +279,9 @@ Examples of valid inputs:
 - ParseError if parsing fails for any reason
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| input | <code>string</code> | input |
+| Param | Type |
+| --- | --- |
+| rawInput | <code>string</code> | 
 
 <a name="mtsDay"></a>
 

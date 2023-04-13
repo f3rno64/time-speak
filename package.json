@@ -3,6 +3,7 @@
   "version": "0.0.5",
   "description": "Library for parsing natural language strings describing times, durations, and intervals",
   "main": "dist/index.js",
+  "types": "./dist/types.d.ts",
   "author": "Cris Mihalache <f3rno64@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/f3rno64/time-speak",
