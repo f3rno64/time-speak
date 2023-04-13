@@ -1,7 +1,18 @@
-import { NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS } from '../const'
 import parseToTimeUnit from './to_time_unit'
 import { ParseError } from '../errors'
-import { NumberWord } from '../types'
+import { Weekday, NumberWord } from '../types'
+import {
+  isNumberWord,
+  isDayOfTheWeek,
+  getNumberWordValue,
+  getDayOfTheWeekValue
+} from '../util'
+
+import {
+  NUMBER_WORDS,
+  NUMBER_WORD_VALUES,
+  TIME_UNIT_DURATIONS
+} from '../const'
 
 /**
  * Parse a string to an mts value. Does not take whitespace into consideration.
@@ -41,7 +52,7 @@ const parseString = (rawInput: string): number => {
     reg += c
 
     if (NUMBER_WORDS.includes(reg as NumberWord)) {
-      lastValue = NW_VALUES[reg]
+      lastValue = NUMBER_WORD_VALUES[reg]
       reg = ''
       continue
     }
@@ -53,11 +64,15 @@ const parseString = (rawInput: string): number => {
 
       // eslint-disable-next-line
       // @ts-ignore
-      const resultValue = NUMBER_WORDS.includes(inputDataValue)
-        ? NW_VALUES[inputDataValue]
-        : Number.isFinite(+inputDataValue)
-          ? +inputDataValue
-          : lastValue
+      const resultValue = isNumberWord(inputDataValue)
+        ? getNumberWordValue(inputDataValue as NumberWord)
+        : isDayOfTheWeek(inputDataValue as Weekday)
+          ? getDayOfTheWeekValue(inputDataValue as Weekday)
+          : Number.isFinite(+inputDataValue)
+            ? +inputDataValue
+            : lastValue
+
+      new Date().getDate()
 
       if (!Number.isFinite(resultValue)) {
         continue

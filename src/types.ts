@@ -12,6 +12,9 @@ export enum TimeUnit {
   Year = 'year'
 }
 
+/**
+ * Words for numbers
+ */
 export enum NumberWord {
   One = 'one',
   Two = 'two',
@@ -23,6 +26,16 @@ export enum NumberWord {
   Eight = 'eight',
   Nine = 'nine',
   Ten = 'ten'
+}
+
+export enum Weekday {
+  Monday = 'monday',
+  Tuesday = 'tuesday',
+  Wednesday = 'wednesday',
+  Thursday = 'thursday',
+  Friday = 'friday',
+  Saturday = 'saturday',
+  Sunday = 'sunday'
 }
 
 export type ValueMap = Record<string, number>

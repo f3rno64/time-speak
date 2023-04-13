@@ -1,10 +1,31 @@
 import {
   DurationValueMap,
   RegexStringMap,
+  Weekday,
   NumberWord,
   ValueMap,
   TimeUnit
 } from './types'
+
+export const WEEKDAYS = [
+  Weekday.Monday,
+  Weekday.Tuesday,
+  Weekday.Wednesday,
+  Weekday.Thursday,
+  Weekday.Friday,
+  Weekday.Saturday,
+  Weekday.Sunday
+]
+
+export const WEEKDAY_VALUES = {
+  [Weekday.Monday]: 1,
+  [Weekday.Tuesday]: 2,
+  [Weekday.Wednesday]: 3,
+  [Weekday.Thursday]: 4,
+  [Weekday.Friday]: 5,
+  [Weekday.Saturday]: 6,
+  [Weekday.Sunday]: 7
+}
 
 export const NUMBER_WORDS = [
   NumberWord.One,
@@ -19,7 +40,7 @@ export const NUMBER_WORDS = [
   NumberWord.Ten,
 ]
 
-export const NW_VALUES: ValueMap = {
+export const NUMBER_WORD_VALUES: ValueMap = {
   [NumberWord.One]: 1,
   [NumberWord.Two]: 2,
   [NumberWord.Three]: 3,
