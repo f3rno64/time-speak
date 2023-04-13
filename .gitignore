@@ -10,3 +10,6 @@ yarn-error.log
 yalc.lock
 tags
 todo
+
+src/**/*.js
+src/**/*.d.ts
