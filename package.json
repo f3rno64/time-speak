@@ -40,6 +40,7 @@
     "@tsconfig/node-lts": "^18.12.1",
     "@types/chai": "^4.3.4",
     "@types/lodash": "^4.14.192",
+    "@types/lowdb": "^1.0.11",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@types/signale": "^1.4.4",
