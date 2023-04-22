@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/f3rno64/time-speak/compare/v0.0.9...v0.0.10) (2023-04-22)
+
+
+### Bug Fixes
+
+* add lowdb types ([7bb37a1](https://github.com/f3rno64/time-speak/commit/7bb37a1cd5ef1cb21bc5d90f9b0db785374e0096))
+
 ### [0.0.9](https://github.com/f3rno64/time-speak/compare/v0.0.8...v0.0.9) (2023-04-13)
 
 ### [0.0.8](https://github.com/f3rno64/time-speak/compare/v0.0.7...v0.0.8) (2023-04-13)
