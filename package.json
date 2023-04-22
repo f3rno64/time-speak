@@ -39,22 +39,22 @@
   "devDependencies": {
     "@tsconfig/node-lts": "^18.12.1",
     "@types/chai": "^4.3.4",
-    "@types/lodash": "^4.14.192",
+    "@types/lodash": "^4.14.194",
     "@types/lowdb": "^1.0.11",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.15.13",
     "@types/signale": "^1.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "chai": "^4.3.7",
     "dts-gen": "^0.6.1",
-    "eslint": "^8.37.0",
+    "eslint": "^8.39.0",
     "jsdoc-to-markdown": "^8.0.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.3",
-    "updates": "^13.4.0"
+    "typescript": "^5.0.4",
+    "updates": "^14.0.1"
   }
 }

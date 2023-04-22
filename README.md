@@ -79,8 +79,8 @@ utility methods to convert to other units (hours, minutes, etc).</p>
 
 <dl>
 <dt><a href="#parseString">parseString(rawInput)</a> ⇒ <code>number</code></dt>
-<dd><p>Parse a string to an mts value. Does not take whitespace into consideration.
-Examples of valid inputs:</p>
+<dd><p>Parse a string to an mts value.</p>
+<p>Examples of valid inputs:</p>
 <ul>
 <li>&#39;2 days ago&#39;</li>
 <li>&#39;in 1 week and 3 days&#39;</li>
@@ -266,7 +266,8 @@ Units of time
 <a name="parseString"></a>
 
 ## parseString(rawInput) ⇒ <code>number</code>
-Parse a string to an mts value. Does not take whitespace into consideration.
+Parse a string to an mts value.
+
 Examples of valid inputs:
   - '2 days ago'
   - 'in 1 week and 3 days'
