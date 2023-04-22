@@ -4,21 +4,13 @@ import { expect } from 'chai'
 
 import parseString from '../'
 import { TimeUnit } from '../types'
-import { TIME_UNIT_DURATIONS } from '../const'
+import { NUMBER_WORDS, TIME_UNITS, TIME_UNIT_DURATIONS } from '../const'
 import { mtsDay, mtsWeek } from '../util/mts'
 
 const TEST_DATA = [
   ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
   ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
   ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)]
-]
-
-const TIME_UNITS = [
-  'millisecond', 'second', 'minute', 'hour', 'day', 'week', 'month', 'year'
-]
-
-const NUMBER_WORDS = [
-  'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'
 ]
 
 TIME_UNITS.forEach((timeUnit: TimeUnit): void => {
