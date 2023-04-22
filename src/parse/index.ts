@@ -1,10 +1,14 @@
-import { NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS } from '../const'
-import parseToTimeUnit from './to_time_unit'
 import { ParseError } from '../errors'
-import { NumberWord } from '../types'
+import { NumberWord, TimeUnit } from '../types'
+import {
+  NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS, TIME_UNITS
+} from '../const'
+
+const PARSE_REGEX = `^(in)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})\\s+(${TIME_UNITS.join('|')})`
 
 /**
- * Parse a string to an mts value. Does not take whitespace into consideration.
+ * Parse a string to an mts value.
+ *
  * Examples of valid inputs:
  *   - '2 days ago'
  *   - 'in 1 week and 3 days'
@@ -24,55 +28,38 @@ const parseString = (rawInput: string): number => {
 
   let reg = ''
   let result = null
-  let lastValue = null
 
   for (let i = 0; i < inputChars.length; i += 1) {
-    const c = inputChars[i]
+    reg += inputChars[i]
 
-    if (/\s/.test(c)) {
-      continue
-    }
-
-    // i.e. 'and' followed by '3'
-    if (Number.isFinite(+c) && !Number.isFinite(+reg)) {
-      reg = ''
-    }
-
-    reg += c
-
-    if (NUMBER_WORDS.includes(reg as NumberWord)) {
-      lastValue = NW_VALUES[reg]
+    if (reg.trim() === 'and' || reg === 's ') {
       reg = ''
       continue
     }
 
-    const res = parseToTimeUnit(reg)
+    const res = new RegExp(PARSE_REGEX).exec(reg)
 
-    if (res !== null) {
-      const { timeUnit, inputDataValue } = res
+    if (!res) {
+      continue
+    }
 
-      // eslint-disable-next-line
-      // @ts-ignore
-      const resultValue = NUMBER_WORDS.includes(inputDataValue)
-        ? NW_VALUES[inputDataValue]
-        : Number.isFinite(+inputDataValue)
-          ? +inputDataValue
-          : lastValue
+    const value = res[2] == 'a'
+      ? 1
+      : res[2]
 
-      if (!Number.isFinite(resultValue)) {
-        continue
-      }
+    const unit = res[3]
+    const unitValue = TIME_UNIT_DURATIONS[unit as TimeUnit]
+    const parsedValue = NUMBER_WORDS.includes(value as NumberWord)
+      ? NW_VALUES[value as NumberWord] * unitValue
+      : +value * unitValue
 
+    if (Number.isFinite(parsedValue)) {
       if (result === null) {
-        result = 0
+        result = parsedValue
+      } else {
+        result += parsedValue
       }
 
-      // eslint-disable-next-line
-      // @ts-ignore
-      result += resultValue * TIME_UNIT_DURATIONS[timeUnit]
-      lastValue = null
-      reg = ''
-    } else if (reg === 'and') {
       reg = ''
     }
   }

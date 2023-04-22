@@ -3,26 +3,11 @@
 import { expect } from 'chai'
 
 import parseString from '../'
+import { TimeUnit } from '../types'
 import { TIME_UNIT_DURATIONS } from '../const'
-import {
-  mtsMillisecond, mtsMinute, mtsDay, mtsWeek, mtsMonth, mtsYear
-} from '../util/mts'
+import { mtsDay, mtsWeek } from '../util/mts'
 
 const TEST_DATA = [
-  ['1 day', mtsDay()],
-  ['in 1 day', mtsDay()],
-  ['2 days ago', mtsDay(-2)],
-  ['in 2 days', mtsDay(2)],
-  ['2 day ago', mtsDay(-2)],
-  ['1 week', mtsWeek()],
-  ['in 1 week', mtsWeek()],
-  ['1 week ago', mtsWeek(-1)],
-  ['2 months ago', mtsMonth(-2)],
-  ['in 2 months', mtsMonth(2)],
-  ['1 month ago', mtsMonth(-1)],
-  ['1 year ago', mtsYear(-1)],
-  ['in 1 year', mtsYear()],
-  ['1 year', mtsYear()],
   ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
   ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
   ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)]
@@ -36,8 +21,16 @@ const NUMBER_WORDS = [
   'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'
 ]
 
+TIME_UNITS.forEach((timeUnit: TimeUnit): void => {
+  TEST_DATA.push([`a ${timeUnit}`, TIME_UNIT_DURATIONS[timeUnit]])
+  TEST_DATA.push([`in a ${timeUnit}`, TIME_UNIT_DURATIONS[timeUnit]])
+  TEST_DATA.push([`a ${timeUnit} ago`, -1 * TIME_UNIT_DURATIONS[timeUnit]])
+  TEST_DATA.push([`in 4 ${timeUnit}s`, 4 * TIME_UNIT_DURATIONS[timeUnit]])
+  TEST_DATA.push([`4 ${timeUnit}s ago`, -4 * TIME_UNIT_DURATIONS[timeUnit]])
+})
+
 NUMBER_WORDS.forEach((numberWord: string, i: number) => {
-  TIME_UNITS.forEach((timeUnit: string) => {
+  TIME_UNITS.forEach((timeUnit: TimeUnit) => {
     TEST_DATA.push([
       // eslint-disable-next-line
       // @ts-ignore
