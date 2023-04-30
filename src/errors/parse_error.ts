@@ -1,5 +1,3 @@
-import _isEmpty from 'lodash/isEmpty'
-
 class ParseError extends Error {
   _input: string
 
@@ -11,7 +9,7 @@ class ParseError extends Error {
     this.name = 'ParseError'
     this._input = input
 
-    if (!_isEmpty(stack)) {
+    if (stack && stack.length > 0) {
       this.stack = stack
     } else if (Error.captureStackTrace) {
       Error.captureStackTrace(this, this.constructor)

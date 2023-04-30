@@ -87,14 +87,12 @@ iterations.</p>
 ## Functions
 
 <dl>
-<dt><a href="#parseString">parseString(rawInput)</a> ⇒ <code>number</code></dt>
-<dd><p>Parse a string to an mts value.</p>
-<p>Examples of valid inputs:</p>
-<ul>
-<li>&#39;2 days ago&#39;</li>
-<li>&#39;in 1 week and 3 days&#39;</li>
-<li>&#39;1 year and 7 months ago&#39;</li>
-</ul>
+<dt><a href="#parse">parse()</a></dt>
+<dd><p>Parses the provided input to either a unix timestamp or an Interval object.</p>
+</dd>
+<dt><a href="#runParser">runParser()</a></dt>
+<dd><p>Utility to run a parser method and add the result to the current result.
+Returns the value if there is no current result</p>
 </dd>
 <dt><a href="#mtsDay">mtsDay()</a></dt>
 <dd><p>Get days as an mts value</p>
@@ -366,27 +364,25 @@ Units of time
 Words representing numbers.
 
 **Kind**: global variable  
-<a name="parseString"></a>
+<a name="parse"></a>
 
-## parseString(rawInput) ⇒ <code>number</code>
-Parse a string to an mts value.
-
-Examples of valid inputs:
-  - '2 days ago'
-  - 'in 1 week and 3 days'
-  - '1 year and 7 months ago'
+## parse()
+Parses the provided input to either a unix timestamp or an Interval object.
 
 **Kind**: global function  
-**Returns**: <code>number</code> - mts  
-**Throws**:
+**Example**  
+```js
+const mts = parse('2 days ago')
+const i = parse('every minute')
+console.log(+i)
+```
+<a name="runParser"></a>
 
-- ParseError if parsing fails for any reason
+## runParser()
+Utility to run a parser method and add the result to the current result.
+Returns the value if there is no current result
 
-
-| Param | Type |
-| --- | --- |
-| rawInput | <code>string</code> | 
-
+**Kind**: global function  
 <a name="mtsDay"></a>
 
 ## mtsDay()
