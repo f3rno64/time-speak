@@ -6,7 +6,10 @@
 utility methods to convert to other units (hours, minutes, etc).</p>
 </dd>
 <dt><a href="#Interval">Interval</a></dt>
-<dd></dd>
+<dd><p>Utility class representing an interval of time that repeats into the past
+and future. Provides methods for getting the next and previous n-th
+iterations.</p>
+</dd>
 </dl>
 
 ## Members
@@ -205,6 +208,10 @@ Get a date set to the current time plus the duration value.
 <a name="Interval"></a>
 
 ## Interval
+Utility class representing an interval of time that repeats into the past
+and future. Provides methods for getting the next and previous n-th
+iterations.
+
 **Kind**: global class  
 
 * [Interval](#Interval)
@@ -223,6 +230,19 @@ Get a date set to the current time plus the duration value.
 Initialize a new Interval with the provided value and present
 timestamps. Present defaults to the current time.
 
+**Example**  
+```js
+const ti = new Interval('1 day')
+
+ti.next() // => 24 hours from now
+ti.prev() // => 24 hours ago
+
+console.log(Date.now() + ti.getValue())
+
+ti.setValue('3 years and a day')
+
+ti.next() // => 3 years and a day from now
+```
 <a name="Interval+setPresent"></a>
 
 ### interval.setPresent()
