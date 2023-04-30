@@ -12,6 +12,12 @@ import { ParseError } from '../errors'
  * console.log(+i)
  */
 const parse = (rawInput: string): number | Interval => {
+  const d = new Date(rawInput)
+
+  if (!Number.isNaN(+d)) {
+    return +d
+  }
+
   const input = rawInput.trim().toLowerCase()
   const inputChars = input.split('')
   const inputWords = input.split(' ')
@@ -23,7 +29,7 @@ const parse = (rawInput: string): number | Interval => {
     : 1
 
   let reg = ''
-  let result: number = NaN
+  let result = NaN
 
   for (let i = 0; i < inputChars.length; i += 1) {
     reg += inputChars[i]

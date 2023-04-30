@@ -6,6 +6,7 @@ dependencies.
 
 Example input strings:
 
+* "2023-04-30T09:41:55.884Z" (ISO)
 * "2 hours"
 * "1 day ago"
 * "in 1 month and 2 weeks"

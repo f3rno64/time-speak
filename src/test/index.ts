@@ -19,6 +19,7 @@ import {
 } from '../util/mts'
 
 const TEST_DATA = [
+  ['2023-04-30T09:41:55.884Z', +(new Date('2023-04-30T09:41:55.884Z'))],
   ['millisecond', mtsMillisecond()],
   ['second', mtsSecond()],
   ['minute', mtsMinute()],

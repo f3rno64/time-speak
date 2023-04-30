@@ -5,7 +5,7 @@
 const runParser = (
   currentResult: number,
   input: string,
-  parser: Function
+  parser: (input: string) => number
 ): number => {
   const v = parser(input)
 
