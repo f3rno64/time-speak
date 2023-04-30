@@ -5,10 +5,26 @@ import { expect } from 'chai'
 import parseString from '../'
 import { TimeUnit } from '../types'
 import Interval from '../interval'
-import { mtsDay, mtsWeek } from '../util/mts'
 import { NUMBER_WORDS, TIME_UNITS, TIME_UNIT_DURATIONS } from '../const'
+import {
+  mtsDay,
+  mtsHour,
+  mtsWeek,
+  mtsYear,
+  mtsMonth,
+  mtsSecond,
+  mtsMinute,
+  mtsMillisecond,
+} from '../util/mts'
 
 const TEST_DATA = [
+  ['millisecond', mtsMillisecond()],
+  ['second', mtsSecond()],
+  ['minute', mtsMinute()],
+  ['hour', mtsHour()],
+  ['day', mtsDay()],
+  ['month', mtsMonth()],
+  ['year', mtsYear()],
   ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
   ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
   ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)],
@@ -40,6 +56,12 @@ describe('parseString', () => {
 
       expect(res).to.equal(v)
     })
+  })
+
+  it('every year', () => {
+    const res = parseString('every year') as Interval
+
+    expect(res.valueOf() - mtsYear()).to.be.lessThan(1000)
   })
 
   it('every 2 days', () => {
