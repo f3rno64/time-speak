@@ -31,8 +31,7 @@
     "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f 'dist/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --quiet --fix",
-    "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive dist/test/**/*.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive dist/test/**/*.js",
     "update-deps": "./node_modules/.bin/updates -u -g -c",
     "update-version": "./node_modules/.bin/standard-version"
   },
