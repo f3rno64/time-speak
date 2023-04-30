@@ -1,7 +1,4 @@
-import _isFinite from 'lodash/isFinite'
-import _isString from 'lodash/isString'
-
-import parse from './parse'
+import { parse } from './parse'
 
 /**
  * Utility class representing an interval of time that repeats into the past
@@ -50,9 +47,9 @@ class Interval {
    * interval values.
    */
   setPresent (v: string | number): void {
-    this.present = _isString(v)
+    this.present = typeof v === 'string'
       ? +parse(v)
-      : _isFinite(v)
+      : Number.isFinite(v)
         ? v as number
         : Date.now()
   }
@@ -87,7 +84,7 @@ class Interval {
    */
   setValue (v: string | number): void {
     this.input = v
-    this.value = _isString(v)
+    this.value = typeof v === 'string'
       ? (parse(v) as Interval).valueOf()
       : v
   }
@@ -103,7 +100,7 @@ class Interval {
    * Get a human-readable string representation of the current value.
    */
   toString (): string {
-    return _isFinite(+this.input)
+    return Number.isFinite(+this.input)
       ? `every ${this.input}ms`
       : /^every\s+/.test(this.input as string)
         ? this.input as string

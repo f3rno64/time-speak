@@ -1,4 +1,4 @@
-import parse from './parse'
+import { parse } from './parse'
 import Interval from './interval'
 import { ParseError } from './errors'
 import { NumberWord, TimeUnit } from './types'
