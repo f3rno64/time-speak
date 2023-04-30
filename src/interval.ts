@@ -3,7 +3,7 @@ import _isString from 'lodash/isString'
 
 import parse from './parse'
 
-/***
+/**
  * Utility class representing an interval of time that repeats into the past
  * and future. Provides methods for getting the next and previous n-th
  * iterations.
