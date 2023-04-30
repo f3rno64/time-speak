@@ -12,6 +12,9 @@ export enum TimeUnit {
   Year = 'year'
 }
 
+/**
+ * Words representing numbers.
+ */
 export enum NumberWord {
   One = 'one',
   Two = 'two',
@@ -25,10 +28,24 @@ export enum NumberWord {
   Ten = 'ten'
 }
 
+/**
+ * @private
+ */
 export type ValueMap = Record<string, number>
+
+/**
+ * @private
+ */
 export type DurationValueMap = Record<TimeUnit, number>
+
+/**
+ * @private
+ */
 export type RegexStringMap = Record<TimeUnit, string>
 
+/**
+ * @private
+ */
 export interface ParsedTimeUnitData {
   timeUnit: TimeUnit
   inputDataIn: boolean
@@ -37,11 +54,18 @@ export interface ParsedTimeUnitData {
   inputDataAgo: boolean
 }
 
-// TODO: Refactor
+/**
+ * @TODO: Refactor
+ *
+ * @private
+ */
 export interface DurationToUnitsOptions {
   floor?: boolean
 }
 
+/**
+ * @private
+ */
 export interface DurationInUnits {
   [TimeUnit.Millisecond]: number
   [TimeUnit.Second]: number
