@@ -1,0 +1,12 @@
+sudo: false
+os: linux
+cache: yarn
+language: node_js
+node_js:
+  - 16
+
+install:
+  - yarn
+
+script:
+  - yarn test

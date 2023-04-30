@@ -3,6 +3,7 @@
 /.yalc
 /node_modules
 /coverage
+.travis.yml
 package-lock.json
 yarn.lock
 yarn-error.log
