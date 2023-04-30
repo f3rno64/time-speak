@@ -5,6 +5,7 @@ import mtsYear from './year'
 import mtsMonth from './month'
 import mtsMinute from './minute'
 import mtsSecond from './second'
+import mtsNextHour from './next_hour'
 import mtsMillisecond from './millisecond'
 
 export {
@@ -15,5 +16,6 @@ export {
   mtsMonth,
   mtsMinute,
   mtsSecond,
+  mtsNextHour,
   mtsMillisecond
 }

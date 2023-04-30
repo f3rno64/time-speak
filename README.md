@@ -9,6 +9,7 @@ Example input strings:
 * "2 hours"
 * "1 day ago"
 * "in 1 month and 2 weeks"
+* "5pm"
 * wip: "every monday at 5pm"
 * wip: "every other friday at 8pm"
 
@@ -109,6 +110,10 @@ iterations.</p>
 </dd>
 <dt><a href="#mtsMonth">mtsMonth()</a></dt>
 <dd><p>Get months as an mts value</p>
+</dd>
+<dt><a href="#mtsNextHour">mtsNextHour()</a></dt>
+<dd><p>Get the unix timestamp for the next hour; if it is prior to the current
+hour, the hour in the next day is returned.</p>
 </dd>
 <dt><a href="#mtsSecond">mtsSecond()</a></dt>
 <dd><p>Get seconds as an mts value</p>
@@ -410,6 +415,13 @@ Get minutes as an mts value
 
 ## mtsMonth()
 Get months as an mts value
+
+**Kind**: global function  
+<a name="mtsNextHour"></a>
+
+## mtsNextHour()
+Get the unix timestamp for the next hour; if it is prior to the current
+hour, the hour in the next day is returned.
 
 **Kind**: global function  
 <a name="mtsSecond"></a>

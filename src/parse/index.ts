@@ -1,12 +1,19 @@
 import Interval from '../interval'
 import { ParseError } from '../errors'
+import { mtsNextHour } from '../util/mts'
 import { NumberWord, TimeUnit } from '../types'
 import {
   NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS, TIME_UNITS
 } from '../const'
 
 // TODO: Extract
-const PARSE_REGEX = `^(in)?(every)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})?(\\s+)?(${TIME_UNITS.join('|')})`
+const PARSE_TIME_UNIT_REGEX = (
+  `^(in)?(every)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})?(\\s+)?(${TIME_UNITS.join('|')})`
+)
+
+const PARSE_AM_PM_REGEX = (
+  '^(at)?\\s*(\\d+)(am|pm)'
+)
 
 /**
  * Parse a string to an mts value.
@@ -40,7 +47,29 @@ const parseString = (rawInput: string): number | Interval => {
       continue
     }
 
-    const res = new RegExp(PARSE_REGEX).exec(reg)
+    const resAMPM = new RegExp(PARSE_AM_PM_REGEX).exec(reg)
+
+    // TODO: Extract
+    if (resAMPM) {
+      const [,, value, unit] = resAMPM
+
+      if (!['am', 'pm'].includes(unit)) {
+        throw new ParseError(input)
+      }
+
+      const valueHours = unit === 'am'
+        ? +value
+        : +value + 12
+
+      const d = new Date(mtsNextHour(valueHours))
+
+      result = +d
+      reg = ''
+      continue
+    }
+
+    // TODO: Extract
+    const res = new RegExp(PARSE_TIME_UNIT_REGEX).exec(reg)
 
     if (!res) {
       continue
