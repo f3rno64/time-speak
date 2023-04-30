@@ -1,6 +1,6 @@
 {
   "name": "time-speak",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Library for parsing natural language strings describing times, durations, and intervals",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
