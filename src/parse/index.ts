@@ -1,12 +1,12 @@
-import { ParseError } from '../errors'
 import Interval from '../interval'
+import { ParseError } from '../errors'
 import { NumberWord, TimeUnit } from '../types'
 import {
   NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS, TIME_UNITS
 } from '../const'
 
 // TODO: Extract
-const PARSE_REGEX = `^(in)?(every)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})\\s+(${TIME_UNITS.join('|')})`
+const PARSE_REGEX = `^(in)?(every)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})?(\\s+)?(${TIME_UNITS.join('|')})`
 
 /**
  * Parse a string to an mts value.
@@ -50,11 +50,13 @@ const parseString = (rawInput: string): number | Interval => {
       ? 1
       : res[3]
 
-    const unit = res[4]
+    const unit = res[5]
     const unitValue = TIME_UNIT_DURATIONS[unit as TimeUnit]
     const parsedValue = NUMBER_WORDS.includes(value as NumberWord)
       ? NW_VALUES[value as NumberWord] * unitValue
-      : +value * unitValue
+      : Number.isFinite(+value)
+        ? +value * unitValue
+        : unitValue
 
     if (Number.isFinite(parsedValue)) {
       if (result === null) {
