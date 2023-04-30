@@ -4,7 +4,7 @@ import { expect } from 'chai'
 
 import parseString from '../'
 import { TimeUnit } from '../types'
-import TimeInterval from '../time_interval'
+import Interval from '../interval'
 import { mtsDay, mtsWeek } from '../util/mts'
 import { NUMBER_WORDS, TIME_UNITS, TIME_UNIT_DURATIONS } from '../const'
 
@@ -12,7 +12,6 @@ const TEST_DATA = [
   ['in 1 week and 3 days', mtsWeek() + mtsDay(3)],
   ['3 weeks and 5 days', mtsWeek(3) + mtsDay(5)],
   ['3 weeks and 5 days ago', mtsWeek(-3) + mtsDay(-5)],
-  ['every 2 days', new TimeInterval(mtsDay(2)).getValue()]
 ]
 
 TIME_UNITS.forEach((timeUnit: TimeUnit): void => {
@@ -41,5 +40,11 @@ describe('parseString', () => {
 
       expect(res).to.equal(v)
     })
+  })
+
+  it('every 2 days', () => {
+    const res = parseString('every 2 days') as Interval
+
+    expect(res.valueOf() - mtsDay(2)).to.be.lessThan(1000)
   })
 })

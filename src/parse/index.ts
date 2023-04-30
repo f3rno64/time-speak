@@ -1,10 +1,12 @@
 import { ParseError } from '../errors'
+import Interval from '../interval'
 import { NumberWord, TimeUnit } from '../types'
 import {
   NUMBER_WORDS, NW_VALUES, TIME_UNIT_DURATIONS, TIME_UNITS
 } from '../const'
 
-const PARSE_REGEX = `^(in)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})\\s+(${TIME_UNITS.join('|')})`
+// TODO: Extract
+const PARSE_REGEX = `^(in)?(every)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})\\s+(${TIME_UNITS.join('|')})`
 
 /**
  * Parse a string to an mts value.
@@ -18,10 +20,11 @@ const PARSE_REGEX = `^(in)?\\s*(a|\\d+|${NUMBER_WORDS.join('|')})\\s+(${TIME_UNI
  * @returns {number} mts
  * @throws ParseError if parsing fails for any reason
  */
-const parseString = (rawInput: string): number => {
+const parseString = (rawInput: string): number | Interval => {
   const input = rawInput.trim().toLowerCase()
   const inputChars = input.split('')
   const inputWords = input.split(' ')
+  const isInterval = inputWords.includes('every')
   const direction = inputWords.includes('ago')
     ? -1
     : 1
@@ -43,11 +46,11 @@ const parseString = (rawInput: string): number => {
       continue
     }
 
-    const value = res[2] == 'a'
+    const value = res[3] == 'a'
       ? 1
-      : res[2]
+      : res[3]
 
-    const unit = res[3]
+    const unit = res[4]
     const unitValue = TIME_UNIT_DURATIONS[unit as TimeUnit]
     const parsedValue = NUMBER_WORDS.includes(value as NumberWord)
       ? NW_VALUES[value as NumberWord] * unitValue
@@ -68,7 +71,11 @@ const parseString = (rawInput: string): number => {
     throw new ParseError(input)
   }
 
-  return result * direction
+  const v = result * direction
+
+  return isInterval
+    ? new Interval(v)
+    : v
 }
 
 export default parseString

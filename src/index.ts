@@ -1,6 +1,6 @@
 import parse from './parse'
+import Interval from './interval'
 import { ParseError } from './errors'
-import TimeInterval from './time_interval'
 import { NumberWord, TimeUnit } from './types'
 import { TIME_UNITS, TIME_UNIT_DURATIONS } from './const'
 
@@ -11,6 +11,6 @@ export {
   ParseError,
   NumberWord,
   TIME_UNITS,
-  TimeInterval,
+  Interval,
   TIME_UNIT_DURATIONS
 }
