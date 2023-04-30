@@ -13,6 +13,9 @@ utility methods to convert to other units (hours, minutes, etc).</p>
 <dt><a href="#TimeUnit">TimeUnit</a></dt>
 <dd><p>Units of time</p>
 </dd>
+<dt><a href="#NumberWord">NumberWord</a></dt>
+<dd><p>Words representing numbers.</p>
+</dd>
 </dl>
 
 ## Functions
@@ -201,6 +204,12 @@ Get a date set to the current time plus the duration value.
 
 ## TimeUnit
 Units of time
+
+**Kind**: global variable  
+<a name="NumberWord"></a>
+
+## NumberWord
+Words representing numbers.
 
 **Kind**: global variable  
 <a name="parseString"></a>
