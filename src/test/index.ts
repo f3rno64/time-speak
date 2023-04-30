@@ -14,6 +14,7 @@ import {
   mtsMonth,
   mtsSecond,
   mtsMinute,
+  mtsNextHour,
   mtsMillisecond,
 } from '../util/mts'
 
@@ -68,5 +69,17 @@ describe('parseString', () => {
     const res = parseString('every 2 days') as Interval
 
     expect(res.valueOf() - mtsDay(2)).to.be.lessThan(1000)
+  })
+
+  it('5pm', () => {
+    const res = parseString('5pm') as number
+
+    expect(res - mtsNextHour(5 + 12)).to.be.lessThan(1000)
+  })
+
+  it('5am', () => {
+    const res = parseString('5am') as number
+
+    expect(res - mtsNextHour(5)).to.be.lessThan(1000)
   })
 })
