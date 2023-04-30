@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/f3rno64/time-speak/compare/v0.0.11...v0.0.12) (2023-04-30)
+
+
+### Bug Fixes
+
+* add yarn build to node workflow ([c916e1a](https://github.com/f3rno64/time-speak/commit/c916e1a9021ef38da0edfd007edd6378a869c387))
+* remove npm ci from node workflow ([5968007](https://github.com/f3rno64/time-speak/commit/5968007af4d13ec43b4b52f756e78cbd38a7efb9))
+
 ### [0.0.11](https://github.com/f3rno64/time-speak/compare/v0.0.10...v0.0.11) (2023-04-22)
 
 ### [0.0.10](https://github.com/f3rno64/time-speak/compare/v0.0.9...v0.0.10) (2023-04-22)
