@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/f3rno64/time-speak/compare/v0.0.13...v0.0.14) (2023-04-30)
+
+
+### Bug Fixes
+
+* copy readme to dist folder on build ([31a7f91](https://github.com/f3rno64/time-speak/commit/31a7f919b47f21865d64714b499a896a90f715b2))
+* correct Interval doclet ([50a42db](https://github.com/f3rno64/time-speak/commit/50a42db2824e2b71a12ea4bbd1e7222815fdd282))
+* update readme ([27e48d3](https://github.com/f3rno64/time-speak/commit/27e48d3cf7dc484cac3bbead85837061efb3c370))
+
 ### [0.0.13](https://github.com/f3rno64/time-speak/compare/v0.0.12...v0.0.13) (2023-04-30)
 
 ### [0.0.12](https://github.com/f3rno64/time-speak/compare/v0.0.11...v0.0.12) (2023-04-30)
