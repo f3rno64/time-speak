@@ -26,8 +26,7 @@
     "nlp"
   ],
   "scripts": {
-    "build-ts": "tsc",
-    "build": "npm run build-ts && npm run lint",
+    "build": "tsc",
     "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f 'dist/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --quiet --fix",

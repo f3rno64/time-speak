@@ -65,6 +65,8 @@ Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more inf
 <dd><p>A class representing a duration, initialized in milliseconds. Provides
 utility methods to convert to other units (hours, minutes, etc).</p>
 </dd>
+<dt><a href="#Interval">Interval</a></dt>
+<dd></dd>
 </dl>
 
 ## Members
@@ -260,6 +262,73 @@ Get a date set to the current time plus the duration value.
 
 **Kind**: instance method of [<code>Duration</code>](#Duration)  
 **Returns**: <code>Date</code> - value  
+<a name="Interval"></a>
+
+## Interval
+**Kind**: global class  
+
+* [Interval](#Interval)
+    * [new Interval()](#new_Interval_new)
+    * [.setPresent()](#Interval+setPresent)
+    * [.prev()](#Interval+prev)
+    * [.next()](#Interval+next)
+    * [.setValue()](#Interval+setValue)
+    * [.getValue()](#Interval+getValue)
+    * [.toString()](#Interval+toString)
+    * [.valueOf()](#Interval+valueOf)
+
+<a name="new_Interval_new"></a>
+
+### new Interval()
+Initialize a new Interval with the provided value and present
+timestamps. Present defaults to the current time.
+
+<a name="Interval+setPresent"></a>
+
+### interval.setPresent()
+Update the present timestamp, used to resolve the next and previous
+interval values.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+prev"></a>
+
+### interval.prev()
+Get the n-th previous timestamp value. Throws an error if given a value
+less than or equal to zero.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+next"></a>
+
+### interval.next()
+Get the n-th next timestamp value. Throws an error if given a value less
+than or equal to zero.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+setValue"></a>
+
+### interval.setValue()
+Update the Interval value. Can be called with strings to be parsed or
+an explicit finite value.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+getValue"></a>
+
+### interval.getValue()
+Read the interval length in ms.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+toString"></a>
+
+### interval.toString()
+Get a human-readable string representation of the current value.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
+<a name="Interval+valueOf"></a>
+
+### interval.valueOf()
+Read the interval length in ms.
+
+**Kind**: instance method of [<code>Interval</code>](#Interval)  
 <a name="TimeUnit"></a>
 
 ## TimeUnit
