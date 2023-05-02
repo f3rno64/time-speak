@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "incremental": true,
     "declaration": false,
     "declarationMap": false,
-    "removeComments": false,
+    "removeComments": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "ignoreDeprecations": "5.0",

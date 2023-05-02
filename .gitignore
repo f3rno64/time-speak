@@ -5,6 +5,8 @@
 /.yalc
 /node_modules
 /coverage
+
+tsconfig.tsbuildinfo
 package-lock.json
 yarn-error.log
 yalc.lock
