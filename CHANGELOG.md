@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/f3rno64/time-speak/compare/v0.0.19...v0.0.20) (2023-05-17)
+
+
+### Bug Fixes
+
+* include .yarn ([50b23c8](https://github.com/f3rno64/time-speak/commit/50b23c8a4005344e066d99fbf665665ba9a7ee05))
+* use yarn berry in workflows ([5207486](https://github.com/f3rno64/time-speak/commit/5207486ee191144aed46cf8f78c39aeab39d0632))
+
 ### [0.0.19](https://github.com/f3rno64/time-speak/compare/v0.0.18...v0.0.19) (2023-05-17)
 
 ### [0.0.18](https://github.com/f3rno64/time-speak/compare/v0.0.17...v0.0.18) (2023-04-30)
