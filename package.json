@@ -36,18 +36,18 @@
     "update-version": "./node_modules/.bin/standard-version"
   },
   "devDependencies": {
-    "@tsconfig/node-lts": "^18.12.1",
-    "@types/chai": "^4.3.4",
+    "@tsconfig/node-lts": "^18.12.2",
+    "@types/chai": "^4.3.5",
     "@types/lodash": "^4.14.194",
     "@types/lowdb": "^1.0.11",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.15.13",
+    "@types/node": "^20.1.7",
     "@types/signale": "^1.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
     "chai": "^4.3.7",
     "dts-gen": "^0.6.1",
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "jsdoc-to-markdown": "^8.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
@@ -55,6 +55,6 @@
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
-    "updates": "^14.0.1"
+    "updates": "^14.1.0"
   }
 }
