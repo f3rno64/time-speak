@@ -57,5 +57,5 @@
     "typescript": "^5.0.4",
     "updates": "^14.1.0"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@3.6.0"
 }

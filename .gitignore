@@ -3,7 +3,6 @@
 /.undodir
 /.nyc_output
 /.yalc
-/.yarn
 /node_modules
 /coverage
 
