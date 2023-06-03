@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/f3rno64/time-speak/compare/v0.0.22...v0.0.23) (2023-06-03)
+
+
+### Bug Fixes
+
+* move lodash from dev deps to deps ([dcf5715](https://github.com/f3rno64/time-speak/commit/dcf5715b2d30fcbf7495eda13425bdccde01c542))
+
 ### [0.0.22](https://github.com/f3rno64/time-speak/compare/v0.0.21...v0.0.22) (2023-06-03)
 
 ### [0.0.21](https://github.com/f3rno64/time-speak/compare/v0.0.20...v0.0.21) (2023-06-03)
