@@ -1,0 +1,26 @@
+{
+  "name": "time-speak",
+  "version": "1.0.0",
+  "description": "A natural language parser for dates, times and intervals.",
+  "main": "index.js",
+  "repository": "https://github.com/f3rno64/time-speak",
+  "author": "Cris Mihalache <f3rno64@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "numbered": "^1.1.0"
+  },
+  "packageManager": "yarn@4.0.2",
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "chai-almost": "^1.0.1",
+    "eslint": "^8.54.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "lint": "./node_modules/.bin/eslint '*.js' lib test",
+    "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive"
+  }
+}
