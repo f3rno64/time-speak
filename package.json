@@ -1,6 +1,6 @@
 {
   "name": "time-speak",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A natural language parser for dates, times and intervals.",
   "main": "index.js",
   "repository": "https://github.com/f3rno64/time-speak",
