@@ -49,7 +49,7 @@ Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more inf
 
 <a name="parse"></a>
 
-## parse(input) ⇒ <code>number</code>
+## parse(input) ⇒ <code>Date</code> \| <code>number</code>
 Accepts a string representing a date, time, or duration in natural language,
 and returns either a `Date` instance or an duration value in milliseconds.
 
@@ -63,6 +63,12 @@ and returns either a `Date` instance or an duration value in milliseconds.
 | --- | --- | --- |
 | input | <code>string</code> | input string |
 
+**Example**  
+```js
+const ... = parse('in 5 minutes')
+const ... = parse('10 days and 3 hours ago')
+const ... = parse('30 minutes')
+```
 
 
 <!-- Markdown link & img dfn's -->
