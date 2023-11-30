@@ -65,4 +65,26 @@ describe('parse', () => {
       )
     })
   })
+
+  it('parses ISO date strings', () => {
+    const date = new Date()
+    const parsedDate = parse(date.toISOString())
+
+    expect(+parsedDate).to.be.almost(+date, 100)
+  })
+
+  it('parses YYYY, YYYY-MM, YYYY-MM-DD, etc', () => {
+    const inputA = '2022'
+    const dateA = new Date(Date.parse(inputA))
+
+    const inputB = '2022-01'
+    const dateB = new Date(Date.parse(inputB))
+
+    const inputC = '2022-01-01'
+    const dateC = new Date(Date.parse(inputC))
+
+    expect(+parse(inputA)).to.be.almost(+dateA, 100)
+    expect(+parse(inputB)).to.be.almost(+dateB, 100)
+    expect(+parse(inputC)).to.be.almost(+dateC, 100)
+  })
 })
