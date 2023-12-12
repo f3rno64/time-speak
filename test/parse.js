@@ -87,4 +87,15 @@ describe('parse', () => {
     expect(+parse(inputB)).to.be.almost(+dateB, 100)
     expect(+parse(inputC)).to.be.almost(+dateC, 100)
   })
+
+  it('parses "a *"', () => {
+    const inputA = 'a month'
+    const durationA = 30 * 24 * 60 * 60 * 1000
+
+    const inputB = 'a month and a day'
+    const durationB = 30 * 24 * 60 * 60 * 1000 + 24 * 60 * 60 * 1000
+
+    expect(+parse(inputA)).to.equal(durationA)
+    expect(+parse(inputB)).to.equal(durationB)
+  })
 })
