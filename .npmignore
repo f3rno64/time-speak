@@ -1,6 +1,8 @@
 /test
 /scripts
 /.yarn
+/.nyc_output
+.prettierrc.json
 .yarnrc.yml
 .eslintrc.json
 .README.md
