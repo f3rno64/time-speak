@@ -1,25 +1,26 @@
 /* eslint-env mocha */
 
-const chai = require('chai')
-const chaiAlmost = require('chai-almost')
-const { expect } = chai
+import chai, { expect } from 'chai'
+import chaiAlmost from 'chai-almost'
 
 chai.use(chaiAlmost())
 
-const parse = require('../lib/parse')
+import parse from '../parse'
 
-const getMilliseconds = (value) => value
-const getMinutesMS = (value) => value * 60 * 1000
-const getSecondsMS = (value) => value * 1000
-const getHoursMS = (value) => value * 60 * 60 * 1000
-const getDaysMS = (value) => value * 24 * 60 * 60 * 1000
-const getWeeksMS = (value) => value * 7 * 24 * 60 * 60 * 1000
-const getMonthsMS = (value) => value * 30 * 24 * 60 * 60 * 1000
-const getYearsMS = (value) => value * 365 * 24 * 60 * 60 * 1000
-const getDecadesMS = (value) => value * 10 * 365 * 24 * 60 * 60 * 1000
-const getCenturiesMS = (value) => value * 100 * 365 * 24 * 60 * 60 * 1000
+const getMilliseconds = (value: number): number => value
+const getMinutesMS = (value: number): number => value * 60 * 1000
+const getSecondsMS = (value: number): number => value * 1000
+const getHoursMS = (value: number): number => value * 60 * 60 * 1000
+const getDaysMS = (value: number): number => value * 24 * 60 * 60 * 1000
+const getWeeksMS = (value: number): number => value * 7 * 24 * 60 * 60 * 1000
+const getMonthsMS = (value: number): number => value * 30 * 24 * 60 * 60 * 1000
+const getYearsMS = (value: number): number => value * 365 * 24 * 60 * 60 * 1000
+const getDecadesMS = (value: number): number =>
+  value * 10 * 365 * 24 * 60 * 60 * 1000
+const getCenturiesMS = (value: number): number =>
+  value * 100 * 365 * 24 * 60 * 60 * 1000
 
-const TEST_CASES = {
+const TEST_CASES: Record<string, number> = {
   '5 milliseconds': getMilliseconds(5),
   '10 minutes and 3 hours': getMinutesMS(10) + getHoursMS(3),
   '24 seconds and 5 milliseconds': getSecondsMS(24) + getMilliseconds(5),
@@ -48,7 +49,7 @@ describe('parse', () => {
     it(`parses ${input} to the future date: ${new Date(
       TEST_CASES[input]
     ).toLocaleString()}`, () => {
-      expect(+parse(`in ${input}`)).to.be.almost(
+      expect(+parse(`in ${input}`)).to.be.closeTo(
         +new Date(Date.now() + TEST_CASES[input]),
         100
       )
@@ -59,7 +60,7 @@ describe('parse', () => {
     it(`parses ${input} to the past date: ${new Date(
       TEST_CASES[input]
     ).toLocaleString()}`, () => {
-      expect(+parse(`${input} ago`)).to.be.almost(
+      expect(+parse(`${input} ago`)).to.be.closeTo(
         +new Date(Date.now() - TEST_CASES[input]),
         100
       )
@@ -70,7 +71,7 @@ describe('parse', () => {
     const date = new Date()
     const parsedDate = parse(date.toISOString())
 
-    expect(+parsedDate).to.be.almost(+date, 100)
+    expect(+parsedDate).to.be.closeTo(+date, 100)
   })
 
   it('parses YYYY, YYYY-MM, YYYY-MM-DD, etc', () => {
@@ -83,9 +84,9 @@ describe('parse', () => {
     const inputC = '2022-01-01'
     const dateC = new Date(Date.parse(inputC))
 
-    expect(+parse(inputA)).to.be.almost(+dateA, 100)
-    expect(+parse(inputB)).to.be.almost(+dateB, 100)
-    expect(+parse(inputC)).to.be.almost(+dateC, 100)
+    expect(+parse(inputA)).to.be.closeTo(+dateA, 100)
+    expect(+parse(inputB)).to.be.closeTo(+dateB, 100)
+    expect(+parse(inputC)).to.be.closeTo(+dateC, 100)
   })
 
   it('parses "a *"', () => {

@@ -1,9 +1,12 @@
-/test
-/scripts
 /.yarn
+/.github
+/src
+/dist/tests
 /.nyc_output
+.mocharc.json
+tsconfig.json
+.eslintrc.json
+.gitignore
 .prettierrc.json
 .yarnrc.yml
-.eslintrc.json
-.README.md
-yarn.lock
+todo

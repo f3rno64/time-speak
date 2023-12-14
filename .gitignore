@@ -3,7 +3,7 @@
 /.yalc
 /node_modules
 /coverage
-package-lock.json
-yarn-error.log
-yalc.lock
+/dist
 tags
+todo
+tsconfig.tsbuildinfo

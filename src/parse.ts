@@ -1,23 +1,10 @@
-const _capitalize = require('lodash/capitalize')
-const _isFinite = require('lodash/isFinite')
-const _last = require('lodash/last')
+import _last from 'lodash/last'
+import _isFinite from 'lodash/isFinite'
+import _capitalize from 'lodash/capitalize'
 
-const { TIME_UNITS } = require('./const')
+import { TimeUnit } from './types'
 
-/**
- * Accepts a string representing a date, time, or duration in natural language,
- * and returns either a `Date` instance or an duration value in milliseconds.
- *
- * @throws {Error} if given invalid input
- *
- * @param {string} input - input string
- * @returns {Date|number}
- * @example
- * const ... = parse('in 5 minutes')
- * const ... = parse('10 days and 3 hours ago')
- * const ... = parse('30 minutes')
- */
-const parse = (rawInput) => {
+const parse = (rawInput: string) => {
   const attemptToParseAsDate = Date.parse(rawInput)
 
   if (_isFinite(attemptToParseAsDate)) {
@@ -54,9 +41,10 @@ const parse = (rawInput) => {
         _last(token) === 's' ? token.slice(0, -1) : token
       ).replace('centurie', 'century')
 
-      const unitValue = TIME_UNITS[_capitalize(timeUnitToken)]
+      const unitValue =
+        TimeUnit[_capitalize(timeUnitToken) as keyof typeof TimeUnit]
 
-      if (typeof unitValue === 'undefined') {
+      if (typeof unitValue === 'undefined' || currentInputQuantity === null) {
         throw new Error(`Invalid input: ${input}`)
       }
 
@@ -77,4 +65,4 @@ const parse = (rawInput) => {
       : inputValueMS
 }
 
-module.exports = parse
+export default parse
