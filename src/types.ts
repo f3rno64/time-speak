@@ -1,3 +1,6 @@
+/**
+ * A mapping of time units to their millisecond values.
+ */
 enum TimeUnit {
   Millisecond = 1,
   Second = 1000,
@@ -11,6 +14,9 @@ enum TimeUnit {
   Century = 100 * 365 * 24 * 60 * 60 * 1000
 }
 
+/**
+ * A mapping of plural time units to their singular counterparts.
+ */
 enum TimeUnitPlural {
   Milliseconds = TimeUnit.Millisecond,
   Seconds = TimeUnit.Second,

@@ -1,15 +1,17 @@
 {
+  "include": ["src/**/*"],
+
   "ts-node": {
     "files": true
   },
 
   "compilerOptions": {
-    "target": "es2022",
+    "target": "esnext",
     "esModuleInterop": true,
     "incremental": true,
     "declaration": true,
     "module": "commonjs",
-    "lib": ["es2022"],
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "rootDir": "./src",
     "outDir": "./dist",
@@ -31,5 +33,9 @@
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true
   },
-  "include": ["src/**/*"]
+
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }

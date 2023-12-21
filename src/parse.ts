@@ -3,17 +3,34 @@ import * as E from './errors'
 import { TimeUnit, TimeUnitPlural } from './types'
 
 /**
- * Parses a string into a date or a number of milliseconds. Supports natural
- * language input (i.e. '1 day ago', 'in 2 hours and 3 minutes,) and
- * standard date formats (i.e. '2018-01-01', '2018-01-01T00:00:00.000Z').
+ * Parses a string into a `Date` or number of milliseconds. The string can
+ * describe the date in natural language (e.g. "tomorrow", "in 2 hours and 3
+ * minutes", "a month ago", etc.) or be a valid date string (e.g. "2018-01-01").
  *
- * @throws {Error} If the input is invalid.
+ * @throws {@link InvalidInputError}
+ * This exception is thrown if the input is invalid.
+ *
+ * @param input - The string to parse.
+ * @returns The parsed date or number of milliseconds.
  *
  * @example
+ * Here are some example invocations:
+ * ```
  * const ... = parse('1 day ago')
  * const ... = parse('in 2 hours and 3 minutes')
  * const ... = parse('a month')
  * const ... = parse('2018-01-01')
+ * const ... = parse('2018-01-01T00:00:00.000Z')
+ * ```
+ *
+ * @example
+ * Here are some example invocations that throw an exception:
+ * ```
+ * parse('in 2 hours and 3 minutes ago')
+ * parse('a month in the past')
+ * ```
+ *
+ * @public
  */
 const parse = (input: string): Date | number => {
   const attemptToParseAsDate = Date.parse(input)

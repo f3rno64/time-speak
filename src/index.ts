@@ -1,6 +1,12 @@
 import parse from './parse'
+import { InvalidInputError } from './errors'
 
-export * from './types'
-export * from './errors'
-export { parse }
-export default parse
+/**
+ * A tiny utility library _with no dependencies_ that parses natural language
+ * dates, times, and intervals to either a `Date` instance or a numerical value
+ * in milliseconds.
+ *
+ * @packageDocumentation
+ */
+
+export { InvalidInputError, parse }

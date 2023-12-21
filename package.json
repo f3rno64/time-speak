@@ -20,11 +20,12 @@
     "date parser"
   ],
   "scripts": {
+    "docs": "rm -rf docs && npx typedoc --out docs src && cp LICENSE.md docs/LICENSE.md && cp CHANGELOG.md docs/CHANGELOG.md",
     "test": "NODE_PATH=./src NODE_ENV=test mocha",
     "test:coverage": "NODE_PATH=./src NODE_ENV=test nyc mocha",
     "test:watch": "NODE_PATH=./src NODE_ENV=test nyc mocha --watch",
     "build": "NODE_PATH=./src tsc -p tsconfig.json",
-    "lint": "eslint src/**",
+    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
     "update-deps": "updates -u -g -c",
     "update-version": "standard-version",
     "prepare": "husky install",
@@ -43,11 +44,13 @@
     "chai": "^4.3.10",
     "chai-almost": "^1.0.1",
     "eslint": "^8.54.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "^8.0.3",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.1",
+    "typedoc": "^0.25.4",
     "typescript": "^5.3.2",
     "updates": "^15.0.4"
   },
