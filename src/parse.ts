@@ -1,32 +1,43 @@
-import _last from 'lodash/last'
-import _isFinite from 'lodash/isFinite'
-import _capitalize from 'lodash/capitalize'
+import * as U from './utils'
+import * as E from './errors'
+import { TimeUnit, TimeUnitPlural } from './types'
 
-import { TimeUnit } from './types'
+/**
+ * Parses a string into a date or a number of milliseconds. Supports natural
+ * language input (i.e. '1 day ago', 'in 2 hours and 3 minutes,) and
+ * standard date formats (i.e. '2018-01-01', '2018-01-01T00:00:00.000Z').
+ *
+ * @throws {Error} If the input is invalid.
+ *
+ * @example
+ * const ... = parse('1 day ago')
+ * const ... = parse('in 2 hours and 3 minutes')
+ * const ... = parse('a month')
+ * const ... = parse('2018-01-01')
+ */
+const parse = (input: string): Date | number => {
+  const attemptToParseAsDate = Date.parse(input)
 
-const parse = (rawInput: string) => {
-  const attemptToParseAsDate = Date.parse(rawInput)
-
-  if (_isFinite(attemptToParseAsDate)) {
+  if (Number.isFinite(attemptToParseAsDate)) {
     return new Date(attemptToParseAsDate)
   }
 
-  const input = rawInput.toLowerCase().trim()
-  const tokens = input.split(' ')
+  const processedInput = input.toLowerCase().trim()
+  const tokens = processedInput.split(' ')
 
   let inputValueMS = 0
   let inputIsInPast = false
   let inputIsInFuture = false
-  let currentInputQuantity = null
+  let currentQuantity = null
 
   for (let i = 0; i < tokens.length; i++) {
-    const token = tokens[i].replace(/,$/g, '')
+    const token = tokens[i].replace(/\W/g, '')
 
     if (token === 'in') {
       inputIsInFuture = true
+      continue
     } else if (token === 'ago') {
       inputIsInPast = true
-    } else if (['and', ','].includes(token)) {
       continue
     } else if (token === 'and') {
       continue
@@ -46,34 +57,29 @@ const parse = (rawInput: string) => {
         throw new E.InvalidInputError(input, 'quantity already specified')
       }
 
-      currentInputQuantity = +token
+      currentQuantity = +token
     } else {
-      const timeUnitToken = (
-        _last(token) === 's' ? token.slice(0, -1) : token
-      ).replace('centurie', 'century')
-
-      const unitValue =
-        TimeUnit[_capitalize(timeUnitToken) as keyof typeof TimeUnit]
+      const unit = U.capitalize(token)
+      const value =
+        TimeUnit[unit as keyof typeof TimeUnit] ??
+        TimeUnitPlural[unit as keyof typeof TimeUnitPlural]
 
       if (typeof value === 'undefined') {
         throw new E.InvalidInputError(input, `invalid unit: ${token}`)
       }
 
-      inputValueMS += currentInputQuantity * unitValue
-      currentInputQuantity = null
+      inputValueMS += (currentQuantity ?? 1) * value
+      currentQuantity = null
     }
   }
 
-  if (inputIsInPast && inputIsInFuture) {
-    throw new Error(`Invalid input: ${input}`)
+  if (inputIsInPast) {
+    return U.getPastDate(inputValueMS)
+  } else if (inputIsInFuture) {
+    return U.getFutureDate(inputValueMS)
   }
 
-  // prettier-ignore
-  return inputIsInPast
-    ? new Date(Date.now() - inputValueMS)
-    : inputIsInFuture
-      ? new Date(Date.now() + inputValueMS)
-      : inputValueMS
+  return inputValueMS
 }
 
 export default parse

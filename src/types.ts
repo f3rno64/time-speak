@@ -11,4 +11,17 @@ enum TimeUnit {
   Century = 100 * 365 * 24 * 60 * 60 * 1000
 }
 
-export { TimeUnit }
+enum TimeUnitPlural {
+  Milliseconds = TimeUnit.Millisecond,
+  Seconds = TimeUnit.Second,
+  Minutes = TimeUnit.Minute,
+  Hours = TimeUnit.Hour,
+  Days = TimeUnit.Day,
+  Weeks = TimeUnit.Week,
+  Months = TimeUnit.Month,
+  Years = TimeUnit.Year,
+  Decades = TimeUnit.Decade,
+  Centuries = TimeUnit.Century
+}
+
+export { TimeUnit, TimeUnitPlural }
