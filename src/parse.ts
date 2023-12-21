@@ -28,11 +28,22 @@ const parse = (rawInput: string) => {
       inputIsInPast = true
     } else if (['and', ','].includes(token)) {
       continue
-    } else if (token === 'a') {
-      currentInputQuantity = 1
-    } else if (_isFinite(+token)) {
-      if (currentInputQuantity !== null) {
-        throw new Error(`Invalid input: ${input}`)
+    } else if (token === 'and') {
+      continue
+    }
+
+    if (inputIsInPast && inputIsInFuture) {
+      throw new E.InvalidInputError(
+        input,
+        'cannot be both in the past and in the future'
+      )
+    }
+
+    if (token === 'a') {
+      currentQuantity = 1
+    } else if (Number.isFinite(+token)) {
+      if (currentQuantity !== null) {
+        throw new E.InvalidInputError(input, 'quantity already specified')
       }
 
       currentInputQuantity = +token
@@ -44,8 +55,8 @@ const parse = (rawInput: string) => {
       const unitValue =
         TimeUnit[_capitalize(timeUnitToken) as keyof typeof TimeUnit]
 
-      if (typeof unitValue === 'undefined' || currentInputQuantity === null) {
-        throw new Error(`Invalid input: ${input}`)
+      if (typeof value === 'undefined') {
+        throw new E.InvalidInputError(input, `invalid unit: ${token}`)
       }
 
       inputValueMS += currentInputQuantity * unitValue
