@@ -1,5 +1,6 @@
 import parse from './parse'
-import { InvalidInputError } from './errors'
 
-export { parse, InvalidInputError }
+export * from './types'
+export * from './errors'
+export { parse }
 export default parse

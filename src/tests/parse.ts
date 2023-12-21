@@ -7,6 +7,7 @@ chai.use(chaiAlmost())
 
 import parse from '../parse'
 import { TimeUnit } from '../types'
+import { InvalidInputError } from '../errors'
 
 const getMilliseconds = (value: number): number => value
 const getMinutesMS = (value: number): number => value * 60 * 1000
@@ -80,6 +81,18 @@ describe('parse', () => {
     expect(+parse(inputA)).to.be.closeTo(+dateA, 100)
     expect(+parse(inputB)).to.be.closeTo(+dateB, 100)
     expect(+parse(inputC)).to.be.closeTo(+dateC, 100)
+  })
+
+  it('throws an error if the input contains both "in" and "ago"', () => {
+    expect(parse.bind(null, 'in 1 second ago')).to.throw(InvalidInputError)
+  })
+
+  it('throws an error if multiple quantities are provided', () => {
+    expect(parse.bind(null, '1 2 seconds')).to.throw(InvalidInputError)
+  })
+
+  it('throws an error if no time unit is identified', () => {
+    expect(parse.bind(null, '1 asd')).to.throw(InvalidInputError)
   })
 
   for (let i = 0; i < multiUnitDurationTests.length; i++) {

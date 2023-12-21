@@ -33,21 +33,25 @@ const parse = (input: string): Date | number => {
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i].replace(/\W/g, '')
 
-    if (token === 'in') {
-      inputIsInFuture = true
-      continue
-    } else if (token === 'ago') {
-      inputIsInPast = true
-      continue
-    } else if (token === 'and') {
+    if (token === 'and') {
       continue
     }
 
-    if (inputIsInPast && inputIsInFuture) {
-      throw new E.InvalidInputError(
-        input,
-        'cannot be both in the past and in the future'
-      )
+    if (token === 'in' || token === 'ago') {
+      if (token === 'in') {
+        inputIsInFuture = true
+      } else if (token === 'ago') {
+        inputIsInPast = true
+      }
+
+      if (inputIsInPast && inputIsInFuture) {
+        throw new E.InvalidInputError(
+          input,
+          'cannot be both in the past and in the future'
+        )
+      }
+
+      continue
     }
 
     if (token === 'a') {

@@ -4,9 +4,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-A tiny utility library providing a method that parses natural language dates,
-times, and intervals to either a `Date` instance or a numerical value in
-milliseconds.
+A tiny utility library _with no dependencies_ that parses natural language dates, times, and intervals to either a `Date` instance or a numerical value in milliseconds.
 
 ## Installation
 
@@ -27,7 +25,7 @@ yarn update-deps // bump all deps
 
 ## Release History
 
-See *[CHANGELOG.md](CHANGELOG.md)* for more information.
+See _[CHANGELOG.md](CHANGELOG.md)_ for more information.
 
 ## License
 
@@ -50,6 +48,7 @@ Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more inf
 <a name="parse"></a>
 
 ## parse(input) ⇒ <code>Date</code> \| <code>number</code>
+
 Accepts a string representing a date, time, or duration in natural language,
 and returns either a `Date` instance or an duration value in milliseconds.
 
@@ -58,20 +57,20 @@ and returns either a `Date` instance or an duration value in milliseconds.
 
 - <code>Error</code> if given invalid input
 
-
-| Param | Type | Description |
-| --- | --- | --- |
+| Param | Type                | Description  |
+| ----- | ------------------- | ------------ |
 | input | <code>string</code> | input string |
 
-**Example**  
+**Example**
+
 ```js
 const ... = parse('in 5 minutes')
 const ... = parse('10 days and 3 hours ago')
 const ... = parse('30 minutes')
 ```
 
-
 <!-- Markdown link & img dfn's -->
+
 [npm-image]: https://img.shields.io/npm/v/time-speak.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/time-speak
 [npm-downloads]: https://img.shields.io/npm/dm/time-speak.svg?style=flat-square
