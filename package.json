@@ -20,7 +20,7 @@
     "date parser"
   ],
   "scripts": {
-    "docs": "rm -rf docs && npx typedoc --out docs src && cp LICENSE.md docs/LICENSE.md && cp CHANGELOG.md docs/CHANGELOG.md",
+    "docs": "npx typedoc --out docs src && cp LICENSE.md docs/LICENSE.md && cp CHANGELOG.md docs/CHANGELOG.md",
     "test": "NODE_PATH=./src NODE_ENV=test mocha",
     "test:coverage": "NODE_PATH=./src NODE_ENV=test nyc mocha",
     "test:watch": "NODE_PATH=./src NODE_ENV=test nyc mocha --watch",

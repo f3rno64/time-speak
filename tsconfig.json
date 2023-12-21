@@ -35,6 +35,11 @@
   },
 
   "typedocOptions": {
+    "githubPages": true,
+    "cacheBust": true,
+    "hideGenerator": true,
+    "searchInComments": true,
+    "cleanOutputDir": true,
     "entryPoints": ["src/index.ts"],
     "out": "docs"
   }
