@@ -1,6 +1,6 @@
 {
   "name": "time-speak",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A natural language parser for dates, times and intervals.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,9 +28,8 @@
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
     "update-deps": "updates -u -g -c",
     "update-version": "standard-version -a",
-    "prepare": "husky install",
-    "prepublish": "npm run build",
     "prepare": "npm run lint && npm run test && npm run build && npm run docs && git add docs",
+    "prepublish": "npm run build",
     "release": "npm run prepare && npm run update-version && git push --follow-tags origin main"
   },
   "devDependencies": {
