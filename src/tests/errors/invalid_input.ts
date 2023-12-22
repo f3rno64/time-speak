@@ -17,6 +17,13 @@ describe('errors:invalid_input', () => {
 
     const err = new InvalidInputError(input, detail)
 
-    expect(err.message).to.include(detail)
+    expect(err.detail).to.equal(detail)
+  })
+
+  it('provides access to the input string passed to the constructor', () => {
+    const input = 'test-input'
+    const err = new InvalidInputError(input)
+
+    expect(err.input).to.equal(input)
   })
 })
