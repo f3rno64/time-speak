@@ -28,9 +28,10 @@
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
     "update-deps": "updates -u -g -c",
     "update-version": "standard-version -a",
-    "prepare": "npm run lint && npm run test && npm run build && npm run docs && git add docs",
+    "prepare": "husky install",
+    "prepare-release": "npm run lint && npm run test && npm run build && npm run docs && git add docs",
     "prepublish": "npm run build",
-    "release": "npm run prepare && npm run update-version && git push --follow-tags origin main"
+    "release": "npm run prepare-release && npm run update-version && git push --follow-tags origin main"
   },
   "devDependencies": {
     "@eslint/js": "^8.54.0",
