@@ -30,7 +30,7 @@
     "update-version": "standard-version -a",
     "prepare": "husky install",
     "prepublish": "npm run build",
-    "prepare": "npm run lint && npm run test && npm run build && npm run docs",
+    "prepare": "npm run lint && npm run test && npm run build && npm run docs && git add docs",
     "release": "npm run prepare && npm run update-version && git push --follow-tags origin main"
   },
   "devDependencies": {
