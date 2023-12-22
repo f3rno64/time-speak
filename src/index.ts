@@ -10,4 +10,3 @@ import { InvalidInputError } from './errors'
  */
 
 export { InvalidInputError, parse }
-export default parse
