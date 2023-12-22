@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/f3rno64/time-speak/compare/v1.5.0...v1.5.1) (2023-12-22)
+
+
+### Bug Fixes
+
+* add unstaged changes when executing standard-version ([93430e0](https://github.com/f3rno64/time-speak/commit/93430e04965b359ce59d6b975ab3783739fe366e))
+* git add docs after gen in prepare-release script ([38ece16](https://github.com/f3rno64/time-speak/commit/38ece168f86a5afcbc5650b672c54bd50ad9b8c0))
+* release script ([6ce595d](https://github.com/f3rno64/time-speak/commit/6ce595dd06106962292dc65aa68ab4abef3c9225))
+* rm npm publish from release as it is done from a github action ([092754a](https://github.com/f3rno64/time-speak/commit/092754a5dbaf30e3b0308cf8947df18908495962))
+
 ## [1.5.0](https://github.com/f3rno64/time-speak/compare/v1.4.1...v1.5.0) (2023-12-22)
 
 
