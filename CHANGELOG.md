@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/f3rno64/time-speak/compare/v1.8.0...v1.8.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* export parse method as default ([0ea597d](https://github.com/f3rno64/time-speak/commit/0ea597debfdf0fa663d93bc54dc613ec440fa3cf))
+
 ## [1.8.0](https://github.com/f3rno64/time-speak/compare/v1.7.0...v1.8.0) (2024-01-15)
 
 ## [1.7.0](https://github.com/f3rno64/time-speak/compare/v1.6.0...v1.7.0) (2024-01-15)
