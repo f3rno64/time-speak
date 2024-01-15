@@ -1,3 +1,5 @@
+import { parse as parseNumberWord } from 'numbers-from-words'
+
 import * as U from './utils'
 import * as E from './errors'
 import { TimeUnit, TimeUnitPlural } from './types'
@@ -17,6 +19,7 @@ import { TimeUnit, TimeUnitPlural } from './types'
  * Here are some example invocations:
  * ```
  * const ... = parse('1 day ago')
+ * const ... = parse('three days ago')
  * const ... = parse('in 2 hours and 3 minutes')
  * const ... = parse('a month')
  * const ... = parse('2018-01-01')
@@ -48,7 +51,17 @@ const parse = (input: string): Date | number => {
   let currentQuantity = null
 
   for (let i = 0; i < tokens.length; i++) {
-    const token = tokens[i].replace(/\W/g, '')
+    let token = tokens[i].replace(/\W/g, '')
+
+    try {
+      const number = parseNumberWord(token)
+
+      if (number !== 0) {
+        token = `${number}`
+      }
+    } catch (err) {
+      // ignore
+    }
 
     if (token === 'and') {
       continue
@@ -75,7 +88,10 @@ const parse = (input: string): Date | number => {
       currentQuantity = 1
     } else if (Number.isFinite(+token)) {
       if (currentQuantity !== null) {
-        throw new E.InvalidInputError(input, 'quantity already specified')
+        throw new E.InvalidInputError(
+          input,
+          `quantity already specified: ${currentQuantity}`
+        )
       }
 
       currentQuantity = +token

@@ -34,6 +34,18 @@ const MULTI_UNIT_DURATION_TESTS: Record<string, number> = {
   '1 decade and 2 centuries': getDecadesMS(1) + getCenturiesMS(2)
 }
 
+const NUMBER_WORDS = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9
+}
+
 const UNIT_TESTS: Record<string, number> = {
   millisecond: getMilliseconds(1),
   second: getSecondsMS(1),
@@ -133,6 +145,23 @@ describe('parse', () => {
 
     it(`parses a ${input} to ${UNIT_TESTS[input]}ms`, () => {
       expect(parse(`a ${input}`)).to.equal(UNIT_TESTS[input])
+    })
+
+    const inputPlural =
+      input.slice(input.length - 1) === 'y'
+        ? input.slice(input.length - 2) === 'ay'
+          ? `${input}s`
+          : `${input.slice(0, input.length - 1)}ies`
+        : `${input}s`
+
+    Object.keys(NUMBER_WORDS).forEach((numberWord: string): void => {
+      const v =
+        UNIT_TESTS[input] *
+        NUMBER_WORDS[numberWord as keyof typeof NUMBER_WORDS]
+
+      it(`parses ${numberWord} ${inputPlural} to ${v}ms`, () => {
+        expect(parse(`${numberWord} ${inputPlural}`)).to.equal(v)
+      })
     })
   }
 })
