@@ -5,6 +5,14 @@ import * as E from './errors'
 import { TimeUnit, TimeUnitPlural } from './types'
 
 /**
+ * A tiny utility library _with no dependencies_ that parses natural language
+ * dates, times, and intervals to either a `Date` instance or a numerical value
+ * in milliseconds.
+ *
+ * @packageDocumentation
+ */
+
+/**
  * Parses a string into a `Date` or number of milliseconds. The string can
  * describe the date in natural language (e.g. "tomorrow", "in 2 hours and 3
  * minutes", "a month ago", etc.) or be a valid date string (e.g. "2018-01-01").

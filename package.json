@@ -21,6 +21,8 @@
   ],
   "scripts": {
     "docs": "npx typedoc --out docs src && cp LICENSE.md docs/LICENSE.md && cp CHANGELOG.md docs/CHANGELOG.md",
+    "docs:md": "npm run build && rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f 'dist/**/*.js' > DOCUMENTATION.md",
+    "gen-readme": "npm run build && rm README.md && node scripts/gen_readme.js",
     "test": "NODE_PATH=./src NODE_ENV=test mocha",
     "test:coverage": "NODE_PATH=./src NODE_ENV=test nyc mocha",
     "test:watch": "NODE_PATH=./src NODE_ENV=test nyc mocha --watch",
@@ -29,7 +31,7 @@
     "update-deps": "updates -u -g -c",
     "update-version": "standard-version -a",
     "prepare": "husky install",
-    "prepare-release": "npm run lint && npm run test && npm run build && npm run docs && git add docs",
+    "prepare-release": "npm run lint && npm run test && npm run build && npm run docs && git add docs && npm run docs:md && npm run gen-readme",
     "prepublish": "npm run build",
     "release": "npm run prepare-release && npm run update-version && git push --follow-tags origin main"
   },
@@ -48,6 +50,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "^8.0.3",
+    "jsdoc-to-markdown": "^8.0.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "standard-version": "^9.5.0",
