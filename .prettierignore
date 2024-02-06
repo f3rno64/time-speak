@@ -1,0 +1,7 @@
+/docs
+/dist
+/node_modules
+.eslintrc.json
+DOCUMENTATION.md
+CHANGELOG.md
+README.md

@@ -1,0 +1,5 @@
+!.*.json
+**/node_modules
+**/docs
+**/dist
+commitlint.config.ts

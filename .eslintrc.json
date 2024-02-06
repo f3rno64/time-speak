@@ -1,40 +1,72 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "./tsconfig.json",
-        "tsconfigRootDir": "./",
-        "ecmaVersion": 2022,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "eslint-plugin-tsdoc"
-    ],
-    "rules": {
-        "tsdoc/syntax": "warn",
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
-    }
+  "root": true,
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es2024": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "lib": ["esnext"],
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "jsDocParsingMode": "all",
+    "project": "./tsconfig.json",
+    "allowAutomaticSingleRunInference": true,
+    "warnOnUnsupportedTypeScriptVersion": true
+  },
+  "plugins": [
+    "pure",
+    "mocha",
+    "github",
+    "lodash",
+    "regexp",
+    "sonarjs",
+    "unicorn",
+    "promise",
+    "immutable",
+    "no-secrets",
+    "json-format",
+    "chai-expect",
+    "switch-case",
+    "optimize-regex",
+    "@typescript-eslint",
+    "write-good-comments",
+    "@fintechstudios/eslint-plugin-chai-as-promised"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:mocha/recommended",
+    "plugin:github/recommended",
+    "plugin:lodash/recommended",
+    "plugin:regexp/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:promise/recommended",
+    "plugin:chai-expect/recommended",
+    "plugin:switch-case/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:jsonc/recommended-with-json",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@fintechstudios/chai-as-promised/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "rules": {
+    "indent": ["error", 2],
+    "i18n-text/no-en": 0,
+    "no-invalid-this": 0,
+    "semi": ["error", "never"],
+    "import/no-namespace": 0,
+    "quotes": ["error", "single"],
+    "github/array-foreach": 0,
+    "no-secrets/no-secrets": "error",
+    "linebreak-style": ["error", "unix"],
+    "lodash/prefer-lodash-method": 0,
+    "sonarjs/no-duplicate-string": 0,
+    "@typescript-eslint/no-unsafe-call": 0,
+    "sonarjs/no-nested-template-literals": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "filenames/match-regex": [2, "^[a-z_]+$", true],
+    "@typescript-eslint/no-unsafe-assignment": 0
+  }
 }

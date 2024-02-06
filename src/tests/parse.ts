@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 
-import chai, { expect } from 'chai'
+import { use, expect } from 'chai'
 import chaiAlmost from 'chai-almost'
-
-chai.use(chaiAlmost())
 
 import parse from '../parse'
 import { TimeUnit } from '../types'
 import { InvalidInputError } from '../errors'
+
+use(chaiAlmost())
 
 const getMilliseconds = (value: number): number => value
 const getMinutesMS = (value: number): number => value * 60 * 1000
@@ -72,15 +72,15 @@ Object.keys(TimeUnit).forEach((unit: string): void => {
 const multiUnitDurationTests = Object.keys(MULTI_UNIT_DURATION_TESTS)
 const unitTests = Object.keys(UNIT_TESTS)
 
-describe('parse', () => {
-  it('parses ISO date strings', (): void => {
+describe('parse', function () {
+  it('parses ISO date strings', function (): void {
     const date = new Date()
     const parsedDate = parse(date.toISOString())
 
     expect(+parsedDate).to.be.closeTo(+date, 100)
   })
 
-  it('parses YYYY, YYYY-MM, YYYY-MM-DD, etc', (): void => {
+  it('parses YYYY, YYYY-MM, YYYY-MM-DD, etc', function (): void {
     const inputA = '2022'
     const dateA = new Date(Date.parse(inputA))
 
@@ -95,73 +95,77 @@ describe('parse', () => {
     expect(+parse(inputC)).to.be.closeTo(+dateC, 100)
   })
 
-  it('throws an error if the input contains both "in" and "ago"', () => {
+  it('throws an error if the input contains both "in" and "ago"', function () {
     expect(parse.bind(null, 'in 1 second ago')).to.throw(InvalidInputError)
   })
 
-  it('throws an error if multiple quantities are provided', () => {
+  it('throws an error if multiple quantities are provided', function () {
     expect(parse.bind(null, '1 2 seconds')).to.throw(InvalidInputError)
   })
 
-  it('throws an error if no time unit is identified', () => {
+  it('throws an error if no time unit is identified', function () {
     expect(parse.bind(null, '1 asd')).to.throw(InvalidInputError)
   })
 
-  for (let i = 0; i < multiUnitDurationTests.length; i++) {
-    const input = multiUnitDurationTests[i]
-    const output = MULTI_UNIT_DURATION_TESTS[input]
+  it('parses strings to correct millisecond values', function () {
+    for (let i = 0; i < multiUnitDurationTests.length; i++) {
+      const input = multiUnitDurationTests[i]
+      const output = MULTI_UNIT_DURATION_TESTS[input]
 
-    it(`parses ${input} to ${output}ms`, () => {
       expect(+parse(input)).to.be.closeTo(output, 100)
-    })
-  }
+    }
+  })
 
-  for (let i = 0; i < multiUnitDurationTests.length; i++) {
-    const input = multiUnitDurationTests[i]
-    const output = new Date(Date.now() + MULTI_UNIT_DURATION_TESTS[input])
-    const outputUI = output.toLocaleString()
+  it('parses strings to the future dates', function () {
+    for (let i = 0; i < multiUnitDurationTests.length; i++) {
+      const input = multiUnitDurationTests[i]
+      const output = new Date(Date.now() + MULTI_UNIT_DURATION_TESTS[input])
 
-    it(`parses ${input} to the future date: ${outputUI}`, () => {
       expect(+parse(`in ${input}`)).to.be.closeTo(+output, 100)
-    })
-  }
+    }
+  })
 
-  for (let i = 0; i < multiUnitDurationTests.length; i++) {
-    const input = multiUnitDurationTests[i]
-    const output = new Date(Date.now() - MULTI_UNIT_DURATION_TESTS[input])
-    const outputUI = output.toLocaleString()
+  it('parses strings to the past dates', function () {
+    for (let i = 0; i < multiUnitDurationTests.length; i++) {
+      const input = multiUnitDurationTests[i]
+      const output = new Date(Date.now() - MULTI_UNIT_DURATION_TESTS[input])
 
-    it(`parses ${input} to the past date: ${outputUI}`, () => {
       expect(+parse(`${input} ago`)).to.be.closeTo(+output, 100)
-    })
-  }
+    }
+  })
 
-  for (let i = 0; i < unitTests.length; i += 1) {
-    const input = unitTests[i]
-
-    it(`parses ${input} to ${UNIT_TESTS[input]}ms`, () => {
+  it('parses unit strings to valid millisecond values', function () {
+    for (let i = 0; i < unitTests.length; i += 1) {
+      const input = unitTests[i]
       expect(parse(input)).to.equal(UNIT_TESTS[input])
-    })
+    }
+  })
 
-    it(`parses a ${input} to ${UNIT_TESTS[input]}ms`, () => {
+  it('parses a unit to a valid millisecond value', function () {
+    for (let i = 0; i < unitTests.length; i += 1) {
+      const input = unitTests[i]
+
       expect(parse(`a ${input}`)).to.equal(UNIT_TESTS[input])
-    })
+    }
+  })
 
-    const inputPlural =
-      input.slice(input.length - 1) === 'y'
-        ? input.slice(input.length - 2) === 'ay'
-          ? `${input}s`
-          : `${input.slice(0, input.length - 1)}ies`
-        : `${input}s`
+  it('parses number words to valid millisecond values', function () {
+    for (let i = 0; i < unitTests.length; i += 1) {
+      const input = unitTests[i]
+      const inputPlural =
+        input.slice(input.length - 1) === 'y'
+          ? input.slice(input.length - 2) === 'ay'
+            ? `${input}s`
+            : `${input.slice(0, input.length - 1)}ies`
+          : `${input}s`
 
-    Object.keys(NUMBER_WORDS).forEach((numberWord: string): void => {
-      const v =
-        UNIT_TESTS[input] *
-        NUMBER_WORDS[numberWord as keyof typeof NUMBER_WORDS]
+      Object.keys(NUMBER_WORDS).forEach((numberWord: string): void => {
+        const v =
+          UNIT_TESTS[input] *
+          NUMBER_WORDS[numberWord as keyof typeof NUMBER_WORDS]
 
-      it(`parses ${numberWord} ${inputPlural} to ${v}ms`, () => {
         expect(parse(`${numberWord} ${inputPlural}`)).to.equal(v)
       })
-    })
-  }
+    }
+  })
 })

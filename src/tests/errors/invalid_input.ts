@@ -3,15 +3,15 @@
 import { expect } from 'chai'
 import { InvalidInputError } from '../../errors'
 
-describe('errors:invalid_input', () => {
-  it('should include the input in the error message', () => {
+describe('errors:invalid_input', function () {
+  it('should include the input in the error message', function () {
     const input = 'test-input'
     const err = new InvalidInputError(input)
 
     expect(err.message).to.include(input)
   })
 
-  it('should include the detail string if provided in the error message', () => {
+  it('should include the detail string if provided in the error message', function () {
     const input = 'test-input'
     const detail = 'failed for some reason'
 
@@ -20,7 +20,7 @@ describe('errors:invalid_input', () => {
     expect(err.detail).to.equal(detail)
   })
 
-  it('provides access to the input string passed to the constructor', () => {
+  it('provides access to the input string passed to the constructor', function () {
     const input = 'test-input'
     const err = new InvalidInputError(input)
 

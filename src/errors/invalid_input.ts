@@ -1,3 +1,5 @@
+import _isUndefined from 'lodash/isUndefined'
+
 /**
  * Error thrown when the input cannot be parsed to a date or duration. It
  * optionally accepts a `detail` parameter that can be used to provide more
@@ -25,10 +27,9 @@ class InvalidInputError extends Error {
    * @param detail - A more detailed description of the error
    */
   constructor(input: string, detail?: string) {
-    const message =
-      typeof detail === 'undefined'
-        ? `Invalid input: ${input}`
-        : `Invalid input (${detail}): ${input}`
+    const message = _isUndefined(detail)
+      ? `Invalid input: ${input}`
+      : `Invalid input (${detail}): ${input}`
 
     super(message)
 
