@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/f3rno64/time-speak/compare/v1.8.1...v1.9.0) (2024-02-06)
+
+
+### Features
+
+* add lint-staged, commitlint, markdownlint, more eslint plugins, pnpm ([8c4c6b7](https://github.com/f3rno64/time-speak/commit/8c4c6b70889c29740d8f6524e8d0dcec6b915933))
+
+
+### Bug Fixes
+
+* **prettier:** add pnpm-lock.yaml to prettierignore ([e99ddf9](https://github.com/f3rno64/time-speak/commit/e99ddf926766061fe0270f7664aa908a68ccde72))
+
 ### [1.8.1](https://github.com/f3rno64/time-speak/compare/v1.8.0...v1.8.1) (2024-01-15)
 
 
